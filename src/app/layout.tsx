@@ -32,6 +32,14 @@ export const metadata: Metadata = {
     "BellCurve Studio",
     "Workflow Automation",
   ],
+  icons: {
+    icon: [
+      { url: "/logo_main.png", type: "image/png" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    shortcut: "/logo_main.png",
+    apple: "/logo_main.png",
+  },
 };
 
 export default function RootLayout({
