@@ -68,7 +68,7 @@ export default function Home() {
         <WhyUs onOpenAudit={handleNavigateToAudit} />
 
         {/* 6. About Page: Founder Story, Values, Leadership Team */}
-        <AboutSection />
+        <AboutSection onOpenAudit={handleNavigateToAudit} />
 
         {/* 7. Work / Case Studies: Early-Stage Interim Placeholder Copy
         <CaseStudiesSection onOpenAudit={handleNavigateToAudit} /> */}
