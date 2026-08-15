@@ -65,13 +65,13 @@ export default function Home() {
         />
 
         {/* 5. Why BellCurve: Core Charter & Working Principles */}
-        <WhyUs />
+        <WhyUs onOpenAudit={handleNavigateToAudit} />
 
         {/* 6. About Page: Founder Story, Values, Leadership Team */}
         <AboutSection />
 
-        {/* 7. Work / Case Studies: Early-Stage Interim Placeholder Copy */}
-        <CaseStudiesSection onOpenAudit={handleNavigateToAudit} />
+        {/* 7. Work / Case Studies: Early-Stage Interim Placeholder Copy
+        <CaseStudiesSection onOpenAudit={handleNavigateToAudit} /> */}
 
         {/* 8. Contact Page: Direct Details & Short Enquiry Form */}
         <ContactSection onOpenAudit={handleNavigateToAudit} />

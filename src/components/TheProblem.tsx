@@ -83,7 +83,7 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
     <section
       id="problem"
       ref={sectionRef}
-      className="relative overflow-hidden border-b border-[#17232d]/15 bg-[#f4efe5] min-h-screen lg:h-screen flex flex-col justify-between pt-24 sm:pt-28 pb-6"
+      className="relative overflow-hidden bg-[#f4efe5] min-h-screen lg:h-screen flex flex-col justify-between pt-24 sm:pt-28 pb-6"
     >
       {/* Light Ambient Background Glows */}
       <div className="absolute top-12 left-10 w-96 h-96 rounded-full bg-[#ffbd5f]/15 blur-3xl pointer-events-none animate-pulse-glow" aria-hidden="true" />

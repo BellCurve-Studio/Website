@@ -15,7 +15,7 @@ export default function CaseStudiesSection({ onOpenAudit }: CaseStudiesSectionPr
   ];
 
   return (
-    <section id="work" className="relative overflow-hidden border-b border-[#17232d]/15 bg-[#f4efe5] min-h-screen lg:h-screen flex flex-col justify-center py-10">
+    <section id="work" className="relative overflow-hidden bg-[#f4efe5] min-h-screen lg:h-screen flex flex-col justify-center py-10">
       <div className="absolute left-0 top-0 h-full w-3 bg-[#ed542d]" aria-hidden="true" />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-7 lg:px-8 w-full my-auto">

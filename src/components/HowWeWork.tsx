@@ -142,9 +142,8 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
   };
 
   return (
-    <section id="how-we-work" className="relative overflow-hidden border-b border-[#17232d]/15 bg-[#e7f0eb] min-h-screen lg:h-screen flex flex-col justify-center py-6 lg:py-8">
+    <section id="how-we-work" className="relative overflow-hidden bg-[#e7f0eb] min-h-screen lg:h-screen flex flex-col justify-center py-6 lg:py-8">
       {/* Background Decorative Patterns */}
-      <div className="absolute left-0 top-0 h-3 w-full bg-[#17232d]" aria-hidden="true" />
       <div className="absolute right-[-10rem] top-10 h-80 w-80 rounded-full border border-[#17232d]/10 pointer-events-none" aria-hidden="true" />
       <div className="absolute left-[-8rem] bottom-5 h-72 w-72 rounded-full border border-dashed border-[#17232d]/15 pointer-events-none" aria-hidden="true" />
 

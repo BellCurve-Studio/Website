@@ -62,9 +62,7 @@ export default function Services({ onOpenAudit, onSelectServiceTier }: ServicesP
   ];
 
   return (
-    <section id="services" className="relative overflow-hidden border-b border-[#17232d]/15 bg-[#f4efe5] min-h-screen lg:h-screen flex flex-col justify-center py-10">
-      <div className="absolute inset-x-0 top-0 h-3 bg-[#17232d]" aria-hidden="true" />
-
+    <section id="services" className="relative overflow-hidden bg-[#f4efe5] min-h-screen lg:h-screen flex flex-col justify-center py-10">
       <div className="relative mx-auto max-w-7xl px-5 sm:px-7 lg:px-8 w-full my-auto">
         <header className="grid gap-6 lg:grid-cols-[1.2fr_.8fr] lg:items-end scroll-reveal">
           <div>
