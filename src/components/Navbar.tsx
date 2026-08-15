@@ -45,7 +45,7 @@ export default function Navbar({ onOpenAudit }: NavbarProps) {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 py-4 sm:px-7 sm:py-5">
-      <div className="nav-shell mx-auto max-w-7xl">
+      <div className="nav-shell mx-auto max-w-7xl flex items-center justify-between">
         <div className="nav-brand">
           <Link href="/" aria-label="BellCurve Studio home" className="brand-logo">
             <span className="brand-logo-icon" aria-hidden="true">
@@ -69,15 +69,7 @@ export default function Navbar({ onOpenAudit }: NavbarProps) {
           </Link>
         </div>
 
-        <span className="nav-centerpiece" aria-hidden="true">
-          <i className="nav-centerpiece-arc nav-centerpiece-arc-one" />
-          <i className="nav-centerpiece-arc nav-centerpiece-arc-two" />
-          <i className="nav-centerpiece-arc nav-centerpiece-arc-three" />
-          <b />
-        </span>
-
         <div className="nav-actions">
-          <span className="nav-availability hidden lg:inline-flex"><i /> Business Systems Engineering</span>
           <Link href="/audit" className="nav-cta hidden md:inline-flex">
             Get Free Audit <span className="nav-cta-icon"><ArrowUpRight className="h-3.5 w-3.5" /></span>
           </Link>
@@ -85,7 +77,6 @@ export default function Navbar({ onOpenAudit }: NavbarProps) {
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
-        <span className="nav-signal" aria-hidden="true"><i /><i /><i /></span>
       </div>
 
       {open && (
