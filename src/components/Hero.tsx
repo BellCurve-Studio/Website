@@ -181,8 +181,8 @@ export default function Hero({ onOpenAudit, onSeeHowWeWork }: HeroProps) {
               </button>
             </div>
 
-            {/* Pill 2: Digital Presence (Middle Left of Ring) */}
-            <div className="absolute top-[48%] left-[-6%] sm:left-[-4%] z-20 float-pill-2">
+            {/* Pill 2: Digital Presence (Top Left of Ring) */}
+            <div className="absolute top-[28%] left-[-6%] sm:left-[-4%] z-20 float-pill-2">
               <button
                 onClick={() => scrollToServices("services")}
                 className="inline-flex items-center gap-2 rounded-full border-2 border-[#17232d] bg-[#fffdf8] px-4 py-2 text-[10px] sm:text-[11px] font-black uppercase tracking-[.12em] text-[#17232d] shadow-[4px_4px_0_#17232d] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#17232d] hover:text-[#fffdf8] hover:shadow-[5px_5px_0_#ed542d]"
