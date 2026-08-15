@@ -70,8 +70,9 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
       tag: "WORKFLOW FRICTION",
       title: "Workaround Threads",
       metric: "Zero Real-time Sync",
+      headline: "Chaotic WhatsApp and Slack threads as makeshift glue",
       description:
-        "Chaotic WhatsApp and Slack threads acting as makeshift glue for core operational steps that should be automated software pipelines.",
+        "WhatsApp and Slack threads acting as makeshift glue for core operational steps that should be automated software pipelines.",
       impact: "Repeated admin drag & team operational fatigue",
       solution: "Custom event-driven workflow engine that triggers actions automatically.",
       statusColor: "#ed542d",
@@ -142,16 +143,21 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(idx)}
-                  className={`group relative text-left w-full rounded-2xl border-2 p-5 transition-all duration-300 ${
+                  className={`group relative text-left w-full rounded-2xl border-2 p-5 transition-all duration-300 active:scale-[0.98] overflow-hidden ${
                     isActive
-                      ? "border-[#17232d] bg-[#fffdf8] shadow-[6px_6px_0_#ed542d] -translate-y-1"
+                      ? "border-[#17232d] bg-[#fffdf8] shadow-[6px_6px_0_#ed542d] -translate-y-0.5"
                       : "border-[#17232d]/20 bg-[#fffdf8]/60 hover:bg-[#fffdf8] hover:border-[#17232d]/50 hover:shadow-[3px_3px_0_#17232d]"
                   }`}
                 >
+                  {/* Active Indicator Bar */}
+                  {isActive && (
+                    <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#ed542d] rounded-l-2xl animate-fade-in" />
+                  )}
+
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <span
-                        className={`grid h-9 w-9 place-items-center rounded-xl border border-[#17232d] font-code-mono text-xs font-black transition-colors ${
+                        className={`grid h-9 w-9 place-items-center rounded-xl border border-[#17232d] font-code-mono text-xs font-black transition-all duration-200 group-hover:scale-105 ${
                           isActive ? "bg-[#ed542d] text-white" : "bg-[#f4efe5] text-[#17232d]"
                         }`}
                       >
@@ -168,7 +174,7 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
                     </div>
 
                     <span
-                      className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-code-mono text-[10px] font-bold ${
+                      className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-code-mono text-[10px] font-bold transition-colors ${
                         isActive
                           ? "bg-[#ed542d] text-white"
                           : "bg-[#17232d]/10 text-[#17232d]"
@@ -203,8 +209,11 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
               </span>
             </div>
 
-            {/* Window Main Body */}
-            <div className="p-5 sm:p-6 relative z-10 flex flex-col justify-between flex-1 gap-5">
+            {/* Window Main Body with Keyed Smooth Fade-In-Up Animation */}
+            <div
+              key={activeTab}
+              className="animate-tab-fade p-5 sm:p-6 relative z-10 flex flex-col justify-between flex-1 gap-5"
+            >
               
               {/* Symptom Headline & Description */}
               <div>
@@ -250,10 +259,10 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
 
                 <button
                   onClick={onOpenAudit}
-                  className="inline-flex items-center gap-1.5 rounded-full bg-[#17232d] px-3.5 py-1.5 text-[10px] font-black uppercase tracking-wider text-[#fffdf8] shadow-[2px_2px_0_#ed542d] transition-all hover:bg-[#ed542d] hover:text-white"
+                  className="group inline-flex items-center gap-1.5 rounded-full bg-[#17232d] px-4 py-2 text-[10px] font-black uppercase tracking-wider text-[#fffdf8] shadow-[2px_2px_0_#ed542d] transition-all hover:bg-[#ed542d] hover:text-white active:scale-95"
                 >
                   <span>Free Audit</span>
-                  <ArrowUpRight className="h-3 w-3 text-[#ffbd5f]" />
+                  <ArrowUpRight className="h-3.5 w-3.5 text-[#ffbd5f] transition-transform duration-200 group-hover:rotate-45 group-hover:text-white" />
                 </button>
               </div>
 
@@ -278,7 +287,7 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
 
           <button
             onClick={onOpenAudit}
-            className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-[#17232d] px-5 py-2 text-xs font-bold uppercase tracking-wider text-[#fffdf8] shadow-[3px_3px_0_#ffbd5f] transition-all hover:bg-[#ed542d]"
+            className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-[#17232d] px-5 py-2 text-xs font-bold uppercase tracking-wider text-[#fffdf8] shadow-[3px_3px_0_#ffbd5f] transition-all hover:bg-[#ed542d] active:scale-95"
           >
             <span>Get Free Operational Audit</span>
             <ArrowUpRight className="h-3.5 w-3.5 text-[#ffbd5f] transition-transform duration-200 group-hover:rotate-45" />
