@@ -236,7 +236,7 @@ export default function Navbar({ onOpenAudit }: NavbarProps) {
                   <Globe className="h-3 w-3 text-[#ed542d]" /> Connect & Socials
                 </p>
                 
-                <div className="flex flex-wrap gap-2.5">
+                <div className="flex flex-col gap-2.5 w-full">
                   {socialLinks.map((social) => {
                     const IconComp = social.icon;
                     return (
@@ -245,11 +245,13 @@ export default function Navbar({ onOpenAudit }: NavbarProps) {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group inline-flex items-center gap-2 rounded-full border border-[#17232d] bg-[#fffdf8] px-3.5 py-2 text-xs font-bold text-[#17232d] shadow-[3px_3px_0_#17232d] transition-all duration-200 hover:-translate-y-1 hover:bg-[#17232d] hover:text-[#fffdf8] hover:shadow-[5px_5px_0_#ed542d]"
+                        className="group flex items-center justify-between w-full rounded-full border border-[#17232d] bg-[#fffdf8] px-4 py-2.5 text-xs font-bold text-[#17232d] shadow-[3px_3px_0_#17232d] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#17232d] hover:text-[#fffdf8] hover:shadow-[5px_5px_0_#ed542d]"
                       >
-                        <IconComp />
-                        <span>{social.name}</span>
-                        <ArrowUpRight className="h-3 w-3 opacity-60 group-hover:opacity-100 group-hover:text-[#ed542d]" />
+                        <div className="flex items-center gap-2.5">
+                          <IconComp />
+                          <span>{social.name}</span>
+                        </div>
+                        <ArrowUpRight className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 group-hover:text-[#ed542d] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </a>
                     );
                   })}
