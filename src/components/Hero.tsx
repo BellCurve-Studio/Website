@@ -22,48 +22,7 @@ const MAIN_CONTENT_PHRASES = [
   "We'll build software you trust.",
 ];
 
-const ORBIT_VIEWBOX = 400;
-const ORBIT_CENTER = ORBIT_VIEWBOX / 2;
-const INNER_ORBIT_RADIUS = 108;
-
-const ORBIT_LAYERS = [
-  { r: 182, dash: "3 9", stroke: "rgba(23,35,45,0.18)", duration: 55, direction: 1 },
-  { r: 142, dash: "5 8", stroke: "rgba(237,84,45,0.32)", duration: 42, direction: -1 },
-  { r: INNER_ORBIT_RADIUS, dash: "2 6", stroke: "rgba(255,189,95,0.55)", duration: 35, direction: 1 },
-];
-
-function HeroOrbitSystem() {
-  return (
-    <svg
-      className="hero-orbit-svg pointer-events-none select-none"
-      viewBox={`0 0 ${ORBIT_VIEWBOX} ${ORBIT_VIEWBOX}`}
-      fill="none"
-      aria-hidden="true"
-    >
-      {/* Concentric Orbit Rings (No curve dotted wave) */}
-      {ORBIT_LAYERS.map((layer, i) => (
-        <g
-          key={i}
-          className={`hero-orbit-layer ${layer.direction === 1 ? "hero-orbit-layer-forward" : "hero-orbit-layer-reverse"}`}
-          style={{ animationDuration: `${layer.duration}s` }}
-        >
-          <circle
-            cx={ORBIT_CENTER}
-            cy={ORBIT_CENTER}
-            r={layer.r}
-            stroke={layer.stroke}
-            strokeWidth="1.5"
-            strokeDasharray={layer.dash}
-          />
-        </g>
-      ))}
-    </svg>
-  );
-}
-
 export default function Hero({ onOpenAudit, onSeeHowWeWork }: HeroProps) {
-  const logoSize = `${((INNER_ORBIT_RADIUS * 2) / ORBIT_VIEWBOX) * 100 * 0.94}%`;
-
   const scrollToServices = (sectionId: string = "services") => {
     const target = document.getElementById(sectionId);
     if (target) {
@@ -78,7 +37,7 @@ export default function Hero({ onOpenAudit, onSeeHowWeWork }: HeroProps) {
       <div className="absolute top-36 right-16 w-96 h-96 rounded-full bg-[#ed542d]/10 blur-3xl pointer-events-none animate-pulse-glow" aria-hidden="true" />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-7 lg:px-8 my-auto w-full">
-        <div className="grid items-center gap-8 lg:grid-cols-[1.18fr_.82fr] lg:gap-14 py-2">
+        <div className="grid items-center gap-8 lg:grid-cols-[1.15fr_.85fr] lg:gap-12 py-2">
           
           {/* Left Copy Section */}
           <div className="hero-copy relative z-10 scroll-reveal">
@@ -146,87 +105,96 @@ export default function Hero({ onOpenAudit, onSeeHowWeWork }: HeroProps) {
             </div>
           </div>
 
-          {/* Right Visual Stage - Centered Transparent Logo + Slow-Rotating Service Bars */}
-          <div className="relative mx-auto aspect-square w-full max-w-[420px] lg:ml-auto scroll-reveal-scale delay-100">
-            <div className="hero-orbit-stage relative w-full h-full grid place-items-center">
-              <div className="hero-orbit-zoom w-full h-full relative">
-                <HeroOrbitSystem />
+          {/* Right Visual Stage - PERFECT DEAD-CENTERED LOGO + HORIZONTAL SLOW-ROTATING SERVICE PILLS */}
+          <div className="relative mx-auto aspect-square w-full max-w-[400px] lg:ml-auto scroll-reveal-scale delay-100 flex items-center justify-center">
+            
+            {/* SVG 3 Dotted Concentric Orbit Rings */}
+            <svg
+              className="w-full h-full pointer-events-none select-none"
+              viewBox="0 0 400 400"
+              fill="none"
+              aria-hidden="true"
+            >
+              {/* Ring 1 (Outer, Radius 160) */}
+              <circle
+                cx="200"
+                cy="200"
+                r="160"
+                stroke="rgba(23,35,45,0.18)"
+                strokeWidth="1.5"
+                strokeDasharray="4 8"
+              />
+              {/* Ring 2 (Middle, Radius 120) */}
+              <circle
+                cx="200"
+                cy="200"
+                r="120"
+                stroke="rgba(237,84,45,0.32)"
+                strokeWidth="1.5"
+                strokeDasharray="5 7"
+              />
+              {/* Ring 3 (Inner, Radius 82) */}
+              <circle
+                cx="200"
+                cy="200"
+                r="82"
+                stroke="rgba(255,189,95,0.55)"
+                strokeWidth="1.5"
+                strokeDasharray="3 6"
+              />
+            </svg>
 
-                {/* Dead-Center Monogram Logo (Transparent, No Background Circle) */}
-                <div
-                  className="hero-logo-frame pointer-events-none select-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
-                  style={{ width: logoSize, height: logoSize }}
-                >
-                  <Image
-                    src="/Bellcurve.png"
-                    alt="BellCurve monogram"
-                    width={1280}
-                    height={1280}
-                    priority
-                    draggable={false}
-                    sizes="(max-width: 1024px) 80vw, 420px"
-                    className="hero-logo-image pointer-events-none select-none mix-blend-multiply"
-                  />
-                </div>
-
-                {/* 3 Slow-Rotating Service Bars Orbiting Around the Center Logo */}
-
-                {/* Outer Orbit Ring (Radius 182px / 91% view width): Free Audit Service Pill */}
-                <div
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[91%] h-[91%] rounded-full pointer-events-none hero-orbit-layer-forward"
-                  style={{ animationDuration: "55s" }}
-                >
-                  <button
-                    onClick={onOpenAudit}
-                    className="pointer-events-auto absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex items-center gap-1.5 rounded-full border border-[#17232d] bg-[#fffdf8] px-3 py-1.5 text-[9px] font-black uppercase tracking-[.12em] text-[#17232d] shadow-[3px_3px_0_#ed542d] transition-all hover:bg-[#17232d] hover:text-[#fffdf8] hover:shadow-[4px_4px_0_#ffbd5f]"
-                    title="Click to request a Free Operational Audit"
-                  >
-                    <span className="hero-orbit-layer-reverse inline-flex items-center gap-1.5" style={{ animationDuration: "55s" }}>
-                      <span className="h-2 w-2 rounded-full bg-[#ffbd5f] border border-[#17232d]" />
-                      <span>FREE AUDIT</span>
-                      <ArrowUpRight className="h-3 w-3 text-[#ed542d]" />
-                    </span>
-                  </button>
-                </div>
-
-                {/* Middle Orbit Ring (Radius 142px / 71% view width): Digital Presence Service Pill */}
-                <div
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[71%] h-[71%] rounded-full pointer-events-none hero-orbit-layer-reverse"
-                  style={{ animationDuration: "42s" }}
-                >
-                  <button
-                    onClick={() => scrollToServices("services")}
-                    className="pointer-events-auto absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 inline-flex items-center gap-1.5 rounded-full border border-[#17232d] bg-[#fffdf8] px-3 py-1.5 text-[9px] font-black uppercase tracking-[.12em] text-[#17232d] shadow-[3px_3px_0_#17232d] transition-all hover:bg-[#17232d] hover:text-[#fffdf8] hover:shadow-[4px_4px_0_#ed542d]"
-                    title="Click to view Digital Presence Services"
-                  >
-                    <span className="hero-orbit-layer-forward inline-flex items-center gap-1.5" style={{ animationDuration: "42s" }}>
-                      <span className="h-2 w-2 rounded-full bg-[#ed542d] border border-[#17232d]" />
-                      <span>DIGITAL PRESENCE</span>
-                      <ChevronRight className="h-3 w-3 text-[#ed542d]" />
-                    </span>
-                  </button>
-                </div>
-
-                {/* Inner Orbit Ring (Radius 108px / 54% view width): Core Infrastructure Service Pill */}
-                <div
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[54%] h-[54%] rounded-full pointer-events-none hero-orbit-layer-forward"
-                  style={{ animationDuration: "35s" }}
-                >
-                  <button
-                    onClick={() => scrollToServices("services")}
-                    className="pointer-events-auto absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 inline-flex items-center gap-1.5 rounded-full border border-[#17232d] bg-[#fffdf8] px-3 py-1.5 text-[9px] font-black uppercase tracking-[.12em] text-[#17232d] shadow-[3px_3px_0_#17232d] transition-all hover:bg-[#17232d] hover:text-[#fffdf8] hover:shadow-[4px_4px_0_#cbe9da]"
-                    title="Click to view Core Infrastructure Services"
-                  >
-                    <span className="hero-orbit-layer-reverse inline-flex items-center gap-1.5" style={{ animationDuration: "35s" }}>
-                      <span className="h-2 w-2 rounded-full bg-[#ffbd5f] border border-[#17232d]" />
-                      <span>CORE INFRASTRUCTURE</span>
-                      <ChevronRight className="h-3 w-3 text-[#ed542d]" />
-                    </span>
-                  </button>
-                </div>
-
-              </div>
+            {/* DEAD-CENTER TRANSPARENT MONOGRAM LOGO */}
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-44 z-10 pointer-events-none select-none flex items-center justify-center"
+            >
+              <Image
+                src="/Bellcurve.png"
+                alt="BellCurve monogram"
+                width={1280}
+                height={1280}
+                priority
+                draggable={false}
+                sizes="176px"
+                className="w-full h-full object-contain pointer-events-none select-none mix-blend-multiply"
+              />
             </div>
+
+            {/* 3 PERFECTLY HORIZONTAL SLOW-ORBITING SERVICE PILLS */}
+
+            {/* Outer Orbit: Free Audit Pill */}
+            <button
+              onClick={onOpenAudit}
+              className="orbit-pill-outer whitespace-nowrap inline-flex items-center gap-1.5 rounded-full border border-[#17232d] bg-[#fffdf8] px-3.5 py-1.5 text-[9px] font-black uppercase tracking-[.12em] text-[#17232d] shadow-[3px_3px_0_#ed542d] transition-all hover:bg-[#17232d] hover:text-[#fffdf8] hover:shadow-[4px_4px_0_#ffbd5f]"
+              title="Click to request a Free Operational Audit"
+            >
+              <span className="h-2 w-2 rounded-full bg-[#ffbd5f] border border-[#17232d]" />
+              <span>FREE AUDIT</span>
+              <ArrowUpRight className="h-3 w-3 text-[#ed542d]" />
+            </button>
+
+            {/* Middle Orbit: Digital Presence Pill */}
+            <button
+              onClick={() => scrollToServices("services")}
+              className="orbit-pill-middle whitespace-nowrap inline-flex items-center gap-1.5 rounded-full border border-[#17232d] bg-[#fffdf8] px-3.5 py-1.5 text-[9px] font-black uppercase tracking-[.12em] text-[#17232d] shadow-[3px_3px_0_#17232d] transition-all hover:bg-[#17232d] hover:text-[#fffdf8] hover:shadow-[4px_4px_0_#ed542d]"
+              title="Click to view Digital Presence Services"
+            >
+              <span className="h-2 w-2 rounded-full bg-[#ed542d] border border-[#17232d]" />
+              <span>DIGITAL PRESENCE</span>
+              <ChevronRight className="h-3 w-3 text-[#ed542d]" />
+            </button>
+
+            {/* Inner Orbit: Core Infrastructure Pill */}
+            <button
+              onClick={() => scrollToServices("services")}
+              className="orbit-pill-inner whitespace-nowrap inline-flex items-center gap-1.5 rounded-full border border-[#17232d] bg-[#fffdf8] px-3.5 py-1.5 text-[9px] font-black uppercase tracking-[.12em] text-[#17232d] shadow-[3px_3px_0_#17232d] transition-all hover:bg-[#17232d] hover:text-[#fffdf8] hover:shadow-[4px_4px_0_#cbe9da]"
+              title="Click to view Core Infrastructure Services"
+            >
+              <span className="h-2 w-2 rounded-full bg-[#ffbd5f] border border-[#17232d]" />
+              <span>CORE INFRASTRUCTURE</span>
+              <ChevronRight className="h-3 w-3 text-[#ed542d]" />
+            </button>
+
           </div>
 
         </div>

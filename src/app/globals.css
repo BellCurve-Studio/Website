@@ -101,6 +101,47 @@
 .hero-logo-image { width: 100%; max-width: none; height: 100%; object-fit: contain; }
 @keyframes hero-orbit-spin { to { transform: rotate(360deg); } }
 @keyframes hero-orbit-spin-reverse { to { transform: rotate(-360deg); } }
+
+/* Pristine Horizontal Orbit Pill Animations */
+@keyframes orbit-move-outer {
+  0% { transform: translate(-50%, -50%) rotate(0deg) translate(160px) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) translate(160px) rotate(-360deg); }
+}
+
+@keyframes orbit-move-middle {
+  0% { transform: translate(-50%, -50%) rotate(120deg) translate(120px) rotate(-120deg); }
+  100% { transform: translate(-50%, -50%) rotate(-240deg) translate(120px) rotate(240deg); }
+}
+
+@keyframes orbit-move-inner {
+  0% { transform: translate(-50%, -50%) rotate(240deg) translate(82px) rotate(-240deg); }
+  100% { transform: translate(-50%, -50%) rotate(600deg) translate(82px) rotate(-600deg); }
+}
+
+.orbit-pill-outer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+  animation: orbit-move-outer 52s linear infinite;
+}
+
+.orbit-pill-middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+  animation: orbit-move-middle 42s linear infinite;
+}
+
+.orbit-pill-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+  animation: orbit-move-inner 32s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) { .hero-orbit-layer { animation: none !important; } }
 @media (max-width: 1023px) { .hero-studio-grid { min-height: auto; } .hero-orbit-stage { max-width: 420px; } }
 .nav-shell { position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: center; min-height: 4.85rem; padding: .45rem .55rem .45rem 1rem; overflow: hidden; border: 1px solid rgba(23,35,45,.26); border-radius: 1.7rem; background: linear-gradient(115deg, rgba(255,253,248,.96), rgba(255,253,248,.84)); box-shadow: 5px 5px 0 #17232d, 0 12px 28px rgba(23,35,45,.08); backdrop-filter: blur(16px); }
