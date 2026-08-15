@@ -105,46 +105,52 @@ export default function Hero({ onOpenAudit, onSeeHowWeWork }: HeroProps) {
             </div>
           </div>
 
-          {/* Right Visual Stage - LARGER DEAD-CENTERED LOGO + LARGER STILL SERVICE PILLS */}
+          {/* Right Visual Stage - DEAD-CENTERED LOGO + ROTATING DOTTED ORBIT RINGS + STILL GENTLY-FLOATING SERVICE PILLS */}
           <div className="relative mx-auto aspect-square w-full max-w-[480px] sm:max-w-[520px] lg:ml-auto scroll-reveal-scale delay-100 flex items-center justify-center">
             
-            {/* SVG 3 Dotted Concentric Orbit Rings (Scaled Larger) */}
+            {/* SVG 3 Dotted Concentric Orbit Rings (Rotating Continuously) */}
             <svg
               className="w-full h-full pointer-events-none select-none"
               viewBox="0 0 400 400"
               fill="none"
               aria-hidden="true"
             >
-              {/* Ring 1 (Outer, Radius 185) */}
-              <circle
-                cx="200"
-                cy="200"
-                r="185"
-                stroke="rgba(23,35,45,0.22)"
-                strokeWidth="1.75"
-                strokeDasharray="5 9"
-              />
-              {/* Ring 2 (Middle, Radius 140) */}
-              <circle
-                cx="200"
-                cy="200"
-                r="140"
-                stroke="rgba(237,84,45,0.36)"
-                strokeWidth="1.75"
-                strokeDasharray="6 8"
-              />
-              {/* Ring 3 (Inner, Radius 95) */}
-              <circle
-                cx="200"
-                cy="200"
-                r="95"
-                stroke="rgba(255,189,95,0.65)"
-                strokeWidth="1.75"
-                strokeDasharray="4 7"
-              />
+              {/* Ring 1 (Outer, Radius 185, rotates clockwise slowly) */}
+              <g className="hero-orbit-layer hero-orbit-layer-forward" style={{ animationDuration: "50s" }}>
+                <circle
+                  cx="200"
+                  cy="200"
+                  r="185"
+                  stroke="rgba(23,35,45,0.22)"
+                  strokeWidth="1.75"
+                  strokeDasharray="5 9"
+                />
+              </g>
+              {/* Ring 2 (Middle, Radius 140, rotates counter-clockwise slowly) */}
+              <g className="hero-orbit-layer hero-orbit-layer-reverse" style={{ animationDuration: "38s" }}>
+                <circle
+                  cx="200"
+                  cy="200"
+                  r="140"
+                  stroke="rgba(237,84,45,0.36)"
+                  strokeWidth="1.75"
+                  strokeDasharray="6 8"
+                />
+              </g>
+              {/* Ring 3 (Inner, Radius 95, rotates clockwise slowly) */}
+              <g className="hero-orbit-layer hero-orbit-layer-forward" style={{ animationDuration: "28s" }}>
+                <circle
+                  cx="200"
+                  cy="200"
+                  r="95"
+                  stroke="rgba(255,189,95,0.65)"
+                  strokeWidth="1.75"
+                  strokeDasharray="4 7"
+                />
+              </g>
             </svg>
 
-            {/* DEAD-CENTER TRANSPARENT MONOGRAM LOGO (SCALED UP) */}
+            {/* DEAD-CENTER TRANSPARENT MONOGRAM LOGO */}
             <div
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 sm:w-64 sm:h-64 z-10 pointer-events-none select-none flex items-center justify-center"
             >
@@ -160,7 +166,7 @@ export default function Hero({ onOpenAudit, onSeeHowWeWork }: HeroProps) {
               />
             </div>
 
-            {/* 3 LARGER SERVICE PILLS WITH SUBTLE AMBIENT FLOATING MOVEMENT */}
+            {/* 3 STILL SERVICE PILLS WITH SUBTLE AMBIENT FLOATING MOVEMENT */}
 
             {/* Pill 1: Free Audit (Top Right of Outer Ring) */}
             <div className="absolute top-[6%] right-[4%] z-20 float-pill-1">
