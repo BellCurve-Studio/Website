@@ -182,23 +182,23 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
             })}
           </div>
 
-          {/* Right Column: Sleek Mini Terminal Window in Website Dark Ink Theme */}
-          <div className="rounded-2xl border-2 border-[#17232d] bg-[#17232d] text-[#fffdf8] shadow-[7px_7px_0_#ffbd5f] flex flex-col justify-between overflow-hidden relative">
+          {/* Right Column: Sleek Mini Terminal Window in Light Paper Cream Theme */}
+          <div className="rounded-2xl border-2 border-[#17232d] bg-[#fffdf8] text-[#17232d] shadow-[6px_6px_0_#17232d] flex flex-col justify-between overflow-hidden relative">
             
             {/* Window Control Header Bar */}
-            <div className="flex items-center justify-between border-b border-[#fffdf8]/15 bg-[#17232d] px-4 py-2.5">
+            <div className="flex items-center justify-between border-b border-[#17232d]/15 bg-[#f4efe5] px-4 py-2.5">
               <div className="flex items-center gap-1.5">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#ed542d]" />
                 <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd5f]" />
                 <span className="h-2.5 w-2.5 rounded-full bg-[#6ee7b7]" />
               </div>
 
-              <div className="font-code-mono text-[10px] font-bold text-[#ffbd5f] flex items-center gap-1.5">
+              <div className="font-code-mono text-[10px] font-bold text-[#17232d] flex items-center gap-1.5">
                 <Cpu className="h-3 w-3 text-[#ed542d]" />
                 <span>leak_inspection_{symptoms[activeTab].id}.sys</span>
               </div>
 
-              <span className="font-code-mono text-[9px] font-bold text-[#fffdf8]/50 uppercase tracking-wider">
+              <span className="font-code-mono text-[9px] font-bold text-[#ed542d] uppercase tracking-wider">
                 {symptoms[activeTab].tag}
               </span>
             </div>
@@ -208,10 +208,10 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
               
               {/* Symptom Headline & Description */}
               <div>
-                <h3 className="text-xl sm:text-2xl font-black tracking-tight text-[#fffdf8]">
+                <h3 className="text-xl sm:text-2xl font-black tracking-tight text-[#17232d]">
                   {symptoms[activeTab].headline}
                 </h3>
-                <p className="mt-2.5 text-xs font-medium leading-relaxed text-[#fffdf8]/75">
+                <p className="mt-2.5 text-xs font-semibold leading-relaxed text-[#40505a]">
                   {symptoms[activeTab].description}
                 </p>
               </div>
@@ -220,21 +220,21 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
               <div className="grid gap-3 sm:grid-cols-2">
                 
                 {/* Friction Impact Card */}
-                <div className="rounded-xl border border-[#ed542d]/35 bg-[#ed542d]/10 p-3.5">
+                <div className="rounded-xl border border-[#ed542d]/30 bg-[#fff7df] p-3.5">
                   <span className="font-code-mono text-[9px] font-black uppercase tracking-[.14em] text-[#ed542d] block mb-1">
                     🔴 SYSTEM FRICTION
                   </span>
-                  <p className="text-xs font-bold text-[#fffdf8] leading-snug">
+                  <p className="text-xs font-bold text-[#17232d] leading-snug">
                     {symptoms[activeTab].impact}
                   </p>
                 </div>
 
                 {/* BellCurve Solution Card */}
-                <div className="rounded-xl border border-[#ffbd5f]/35 bg-[#ffbd5f]/10 p-3.5">
-                  <span className="font-code-mono text-[9px] font-black uppercase tracking-[.14em] text-[#ffbd5f] block mb-1">
+                <div className="rounded-xl border border-[#17232d]/20 bg-[#e7f0eb] p-3.5">
+                  <span className="font-code-mono text-[9px] font-black uppercase tracking-[.14em] text-[#17232d] block mb-1">
                     ⚡ BELLCURVE FIX
                   </span>
-                  <p className="text-xs font-bold text-[#fffdf8] leading-snug">
+                  <p className="text-xs font-bold text-[#17232d] leading-snug">
                     {symptoms[activeTab].solution}
                   </p>
                 </div>
@@ -242,18 +242,18 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
               </div>
 
               {/* Window Action Footer */}
-              <div className="border-t border-[#fffdf8]/15 pt-3.5 flex items-center justify-between">
-                <div className="flex items-center gap-2 font-code-mono text-[10px] font-bold text-[#fffdf8]/50">
+              <div className="border-t border-[#17232d]/15 pt-3.5 flex items-center justify-between">
+                <div className="flex items-center gap-2 font-code-mono text-[10px] font-bold text-[#61707a]">
                   <span className="h-2 w-2 rounded-full bg-[#ed542d] animate-ping" />
                   <span>Diagnostic First</span>
                 </div>
 
                 <button
                   onClick={onOpenAudit}
-                  className="inline-flex items-center gap-1.5 rounded-full bg-[#ed542d] px-3.5 py-1.5 text-[10px] font-black uppercase tracking-wider text-white shadow-[2px_2px_0_#ffbd5f] transition-all hover:bg-[#ffbd5f] hover:text-[#17232d]"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[#17232d] px-3.5 py-1.5 text-[10px] font-black uppercase tracking-wider text-[#fffdf8] shadow-[2px_2px_0_#ed542d] transition-all hover:bg-[#ed542d] hover:text-white"
                 >
                   <span>Free Audit</span>
-                  <ArrowUpRight className="h-3 w-3" />
+                  <ArrowUpRight className="h-3 w-3 text-[#ffbd5f]" />
                 </button>
               </div>
 
