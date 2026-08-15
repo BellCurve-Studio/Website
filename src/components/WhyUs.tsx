@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   UserCheck,
   Eye,
@@ -9,8 +9,6 @@ import {
   Sparkles,
   Check,
   ArrowUpRight,
-  Play,
-  Pause,
   CheckCircle2,
   XCircle,
   MessageSquare,
@@ -24,9 +22,8 @@ interface WhyUsProps {
 }
 
 export default function WhyUs({ onOpenAudit }: WhyUsProps) {
-  // Active pillar index for interactive laboratory (0..3)
+  // Active pillar index for interactive laboratory (0..3) - MANUAL SELECTION ONLY
   const [activePillar, setActivePillar] = useState<number>(0);
-  const [isAutoplay, setIsAutoplay] = useState<boolean>(true);
 
   // Pillar 1 Interactive state (Middleman vs Direct)
   const [p1FlowMode, setP1FlowMode] = useState<"agency" | "bellcurve">("bellcurve");
@@ -39,15 +36,6 @@ export default function WhyUs({ onOpenAudit }: WhyUsProps) {
 
   // Pillar 4 Interactive state (Jargon vs Plain language switch)
   const [p4JargonFilter, setP4JargonFilter] = useState<"plain" | "buzzwords">("plain");
-
-  // Autoplay timer for interactive stage
-  useEffect(() => {
-    if (!isAutoplay) return;
-    const timer = setInterval(() => {
-      setActivePillar((prev) => (prev + 1) % 4);
-    }, 7000);
-    return () => clearInterval(timer);
-  }, [isAutoplay]);
 
   const pillars = [
     {
@@ -174,10 +162,7 @@ export default function WhyUs({ onOpenAudit }: WhyUsProps) {
                 return (
                   <button
                     key={pillar.id}
-                    onClick={() => {
-                      setActivePillar(idx);
-                      setIsAutoplay(false);
-                    }}
+                    onClick={() => setActivePillar(idx)}
                     className={`group relative text-left flex-1 flex flex-col justify-center rounded-2xl border-2 px-3.5 py-3 transition-all duration-200 overflow-hidden ${
                       isActive
                         ? "border-[#17232d] bg-[#fffdf8] shadow-[5px_5px_0_#17232d] z-10"
@@ -229,13 +214,6 @@ export default function WhyUs({ onOpenAudit }: WhyUsProps) {
                     <p className="mt-1 text-[11px] leading-tight text-[#56616a] line-clamp-1 pl-11 font-medium">
                       {pillar.tagline}
                     </p>
-
-                    {/* Fixed Absolute Bottom Progress Bar (0px height impact on button) */}
-                    {isActive && isAutoplay && (
-                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#17232d]/10 overflow-hidden">
-                        <div className="h-full bg-[#ed542d] animate-[progress_7s_linear]" />
-                      </div>
-                    )}
                   </button>
                 );
               })}
