@@ -3,15 +3,11 @@
 import {
   AlertTriangle,
   ArrowUpRight,
-  CheckCircle2,
   Cpu,
   FileSpreadsheet,
   Globe,
-  Layers,
   MessageSquare,
   ShieldAlert,
-  Sparkles,
-  Zap,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -133,14 +129,13 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
         {/* Dual-Pane Interactive Diagnostic Workbench */}
         <div
           style={{ transitionDelay: isVisible ? "200ms" : "0ms" }}
-          className={`mt-8 grid gap-8 lg:grid-cols-[.9fr_1.1fr] items-stretch transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) ${
+          className={`mt-8 grid gap-8 lg:grid-cols-[.95fr_1.05fr] items-stretch transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
           {/* Left Column: 3 Interactive Symptom Selector Tabs */}
           <div className="flex flex-col gap-3.5 justify-center">
             {symptoms.map((item, idx) => {
-              const IconComp = item.icon;
               const isActive = activeTab === idx;
 
               return (
@@ -187,74 +182,81 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
             })}
           </div>
 
-          {/* Right Column: Live Systems Leak Inspection Card */}
-          <div className="rounded-3xl border-2 border-[#17232d] bg-[#17232d] p-6 sm:p-8 text-[#fffdf8] shadow-[8px_8px_0_#ffbd5f] flex flex-col justify-between relative overflow-hidden">
-            {/* Ambient Accent Glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#ed542d]/20 blur-3xl pointer-events-none" />
-
-            <div className="relative z-10">
-              {/* Header Tag */}
-              <div className="flex items-center justify-between border-b border-[#fffdf8]/15 pb-4">
-                <span className="inline-flex items-center gap-2 rounded-full border border-[#ffbd5f]/30 bg-[#fffdf8]/10 px-3 py-1 font-code-mono text-[9px] font-black uppercase tracking-[.18em] text-[#ffbd5f]">
-                  <Cpu className="h-3 w-3 text-[#ed542d]" />
-                  Leak Inspection #{symptoms[activeTab].id}
-                </span>
-
-                <span className="font-code-mono text-[10px] font-bold text-[#ffbd5f]">
-                  {symptoms[activeTab].tag}
-                </span>
+          {/* Right Column: Sleek Mini Terminal Window in Website Dark Ink Theme */}
+          <div className="rounded-2xl border-2 border-[#17232d] bg-[#17232d] text-[#fffdf8] shadow-[7px_7px_0_#ffbd5f] flex flex-col justify-between overflow-hidden relative">
+            
+            {/* Window Control Header Bar */}
+            <div className="flex items-center justify-between border-b border-[#fffdf8]/15 bg-[#17232d] px-4 py-2.5">
+              <div className="flex items-center gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#ed542d]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd5f]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#6ee7b7]" />
               </div>
 
+              <div className="font-code-mono text-[10px] font-bold text-[#ffbd5f] flex items-center gap-1.5">
+                <Cpu className="h-3 w-3 text-[#ed542d]" />
+                <span>leak_inspection_{symptoms[activeTab].id}.sys</span>
+              </div>
+
+              <span className="font-code-mono text-[9px] font-bold text-[#fffdf8]/50 uppercase tracking-wider">
+                {symptoms[activeTab].tag}
+              </span>
+            </div>
+
+            {/* Window Main Body */}
+            <div className="p-5 sm:p-6 relative z-10 flex flex-col justify-between flex-1 gap-5">
+              
               {/* Symptom Headline & Description */}
-              <div className="mt-5">
-                <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-[#fffdf8]">
+              <div>
+                <h3 className="text-xl sm:text-2xl font-black tracking-tight text-[#fffdf8]">
                   {symptoms[activeTab].headline}
                 </h3>
-                <p className="mt-3 text-xs sm:text-sm font-medium leading-relaxed text-[#fffdf8]/80">
+                <p className="mt-2.5 text-xs font-medium leading-relaxed text-[#fffdf8]/75">
                   {symptoms[activeTab].description}
                 </p>
               </div>
 
-              {/* Impact vs Solution Comparison */}
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {/* Friction vs Fix Comparison Cards */}
+              <div className="grid gap-3 sm:grid-cols-2">
                 
-                {/* Friction Impact */}
-                <div className="rounded-2xl border border-[#ed542d]/40 bg-[#ed542d]/10 p-4">
-                  <span className="font-code-mono text-[9px] font-black uppercase tracking-[.14em] text-[#ed542d]">
+                {/* Friction Impact Card */}
+                <div className="rounded-xl border border-[#ed542d]/35 bg-[#ed542d]/10 p-3.5">
+                  <span className="font-code-mono text-[9px] font-black uppercase tracking-[.14em] text-[#ed542d] block mb-1">
                     🔴 SYSTEM FRICTION
                   </span>
-                  <p className="mt-1.5 text-xs font-bold text-[#fffdf8]">
+                  <p className="text-xs font-bold text-[#fffdf8] leading-snug">
                     {symptoms[activeTab].impact}
                   </p>
                 </div>
 
-                {/* BellCurve Automated Solution */}
-                <div className="rounded-2xl border border-[#ffbd5f]/40 bg-[#ffbd5f]/10 p-4">
-                  <span className="font-code-mono text-[9px] font-black uppercase tracking-[.14em] text-[#ffbd5f]">
+                {/* BellCurve Solution Card */}
+                <div className="rounded-xl border border-[#ffbd5f]/35 bg-[#ffbd5f]/10 p-3.5">
+                  <span className="font-code-mono text-[9px] font-black uppercase tracking-[.14em] text-[#ffbd5f] block mb-1">
                     ⚡ BELLCURVE FIX
                   </span>
-                  <p className="mt-1.5 text-xs font-bold text-[#fffdf8]">
+                  <p className="text-xs font-bold text-[#fffdf8] leading-snug">
                     {symptoms[activeTab].solution}
                   </p>
                 </div>
 
               </div>
-            </div>
 
-            {/* Bottom Diagnostic Action Link */}
-            <div className="relative z-10 border-t border-[#fffdf8]/15 pt-5 mt-6 flex items-center justify-between">
-              <div className="flex items-center gap-2 font-code-mono text-[10px] font-bold text-[#fffdf8]/60">
-                <span className="h-2 w-2 rounded-full bg-[#ed542d] animate-ping" />
-                <span>Diagnostic First • Systems Second</span>
+              {/* Window Action Footer */}
+              <div className="border-t border-[#fffdf8]/15 pt-3.5 flex items-center justify-between">
+                <div className="flex items-center gap-2 font-code-mono text-[10px] font-bold text-[#fffdf8]/50">
+                  <span className="h-2 w-2 rounded-full bg-[#ed542d] animate-ping" />
+                  <span>Diagnostic First</span>
+                </div>
+
+                <button
+                  onClick={onOpenAudit}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[#ed542d] px-3.5 py-1.5 text-[10px] font-black uppercase tracking-wider text-white shadow-[2px_2px_0_#ffbd5f] transition-all hover:bg-[#ffbd5f] hover:text-[#17232d]"
+                >
+                  <span>Free Audit</span>
+                  <ArrowUpRight className="h-3 w-3" />
+                </button>
               </div>
 
-              <button
-                onClick={onOpenAudit}
-                className="inline-flex items-center gap-2 rounded-full bg-[#ed542d] px-4 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-[2px_2px_0_#ffbd5f] transition-all hover:bg-[#ffbd5f] hover:text-[#17232d]"
-              >
-                <span>Free Audit</span>
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </button>
             </div>
 
           </div>
