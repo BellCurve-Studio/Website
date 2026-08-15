@@ -102,45 +102,34 @@
 @keyframes hero-orbit-spin { to { transform: rotate(360deg); } }
 @keyframes hero-orbit-spin-reverse { to { transform: rotate(-360deg); } }
 
-/* Pristine Horizontal Orbit Pill Animations */
-@keyframes orbit-move-outer {
-  0% { transform: translate(-50%, -50%) rotate(0deg) translate(160px) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg) translate(160px) rotate(-360deg); }
+/* Subtle Floating Service Pill Animations (No full rotation) */
+@keyframes float-subtle-1 {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-7px); }
 }
 
-@keyframes orbit-move-middle {
-  0% { transform: translate(-50%, -50%) rotate(120deg) translate(120px) rotate(-120deg); }
-  100% { transform: translate(-50%, -50%) rotate(-240deg) translate(120px) rotate(240deg); }
+@keyframes float-subtle-2 {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(6px); }
 }
 
-@keyframes orbit-move-inner {
-  0% { transform: translate(-50%, -50%) rotate(240deg) translate(82px) rotate(-240deg); }
-  100% { transform: translate(-50%, -50%) rotate(600deg) translate(82px) rotate(-600deg); }
+@keyframes float-subtle-3 {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(7px); }
 }
 
-.orbit-pill-outer {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 20;
-  animation: orbit-move-outer 52s linear infinite;
+.float-pill-1 {
+  animation: float-subtle-1 4.2s ease-in-out infinite alternate;
 }
 
-.orbit-pill-middle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 20;
-  animation: orbit-move-middle 42s linear infinite;
+.float-pill-2 {
+  animation: float-subtle-2 5.0s ease-in-out infinite alternate;
 }
 
-.orbit-pill-inner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 20;
-  animation: orbit-move-inner 32s linear infinite;
+.float-pill-3 {
+  animation: float-subtle-3 4.6s ease-in-out infinite alternate;
 }
+
 
 @media (prefers-reduced-motion: reduce) { .hero-orbit-layer { animation: none !important; } }
 @media (max-width: 1023px) { .hero-studio-grid { min-height: auto; } .hero-orbit-stage { max-width: 420px; } }
