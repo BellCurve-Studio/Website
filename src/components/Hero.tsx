@@ -27,9 +27,9 @@ const ORBIT_CENTER = ORBIT_VIEWBOX / 2;
 const INNER_ORBIT_RADIUS = 108;
 
 const ORBIT_LAYERS = [
-  { r: 182, dash: "3 9", stroke: "rgba(23,35,45,0.18)", duration: 42, direction: 1 },
-  { r: 142, dash: "5 8", stroke: "rgba(237,84,45,0.32)", duration: 32, direction: -1 },
-  { r: INNER_ORBIT_RADIUS, dash: "2 6", stroke: "rgba(255,189,95,0.55)", duration: 24, direction: 1 },
+  { r: 182, dash: "3 9", stroke: "rgba(23,35,45,0.18)", duration: 55, direction: 1 },
+  { r: 142, dash: "5 8", stroke: "rgba(237,84,45,0.32)", duration: 42, direction: -1 },
+  { r: INNER_ORBIT_RADIUS, dash: "2 6", stroke: "rgba(255,189,95,0.55)", duration: 35, direction: 1 },
 ];
 
 function HeroOrbitSystem() {
@@ -40,15 +40,7 @@ function HeroOrbitSystem() {
       fill="none"
       aria-hidden="true"
     >
-      {/* Mathematical Bell Curve Graphic Wave Line */}
-      <path
-        d="M 15 345 Q 110 345 155 210 T 200 55 T 245 210 T 385 345"
-        stroke="rgba(237,84,45,0.22)"
-        strokeWidth="2.5"
-        strokeDasharray="6 6"
-        fill="none"
-      />
-
+      {/* Concentric Orbit Rings (No curve dotted wave) */}
       {ORBIT_LAYERS.map((layer, i) => (
         <g
           key={i}
@@ -63,14 +55,6 @@ function HeroOrbitSystem() {
             strokeWidth="1.5"
             strokeDasharray={layer.dash}
           />
-          <circle
-            cx={ORBIT_CENTER + layer.r * Math.cos(i * 1.6)}
-            cy={ORBIT_CENTER + layer.r * Math.sin(i * 1.6)}
-            r="6"
-            fill={i === 1 ? "#ed542d" : "#ffbd5f"}
-            stroke="#17232d"
-            strokeWidth="2"
-          />
         </g>
       ))}
     </svg>
@@ -79,6 +63,13 @@ function HeroOrbitSystem() {
 
 export default function Hero({ onOpenAudit, onSeeHowWeWork }: HeroProps) {
   const logoSize = `${((INNER_ORBIT_RADIUS * 2) / ORBIT_VIEWBOX) * 100 * 0.94}%`;
+
+  const scrollToServices = (sectionId: string = "services") => {
+    const target = document.getElementById(sectionId);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <section id="hero" className="hero-studio relative overflow-hidden min-h-screen lg:h-screen flex flex-col justify-between pt-24 sm:pt-28 pb-0">
@@ -155,15 +146,15 @@ export default function Hero({ onOpenAudit, onSeeHowWeWork }: HeroProps) {
             </div>
           </div>
 
-          {/* Right Visual Stage - Clean Still Orbit Monogram */}
-          <div className="relative mx-auto aspect-square w-full max-w-[420px] lg:ml-auto scroll-reveal-scale delay-100 select-none pointer-events-none">
+          {/* Right Visual Stage - Centered Transparent Logo + Slow-Rotating Service Bars */}
+          <div className="relative mx-auto aspect-square w-full max-w-[420px] lg:ml-auto scroll-reveal-scale delay-100">
             <div className="hero-orbit-stage relative w-full h-full grid place-items-center">
-              <div className="hero-orbit-zoom">
+              <div className="hero-orbit-zoom w-full h-full relative">
                 <HeroOrbitSystem />
 
-                {/* Center Still Monogram Logo */}
+                {/* Dead-Center Monogram Logo (Transparent, No Background Circle) */}
                 <div
-                  className="hero-logo-frame rounded-full bg-[#fffdf8] p-3 border-2 border-[#17232d] pointer-events-none select-none"
+                  className="hero-logo-frame pointer-events-none select-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
                   style={{ width: logoSize, height: logoSize }}
                 >
                   <Image
@@ -174,9 +165,66 @@ export default function Hero({ onOpenAudit, onSeeHowWeWork }: HeroProps) {
                     priority
                     draggable={false}
                     sizes="(max-width: 1024px) 80vw, 420px"
-                    className="hero-logo-image pointer-events-none select-none"
+                    className="hero-logo-image pointer-events-none select-none mix-blend-multiply"
                   />
                 </div>
+
+                {/* 3 Slow-Rotating Service Bars Orbiting Around the Center Logo */}
+
+                {/* Outer Orbit Ring (Radius 182px / 91% view width): Free Audit Service Pill */}
+                <div
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[91%] h-[91%] rounded-full pointer-events-none hero-orbit-layer-forward"
+                  style={{ animationDuration: "55s" }}
+                >
+                  <button
+                    onClick={onOpenAudit}
+                    className="pointer-events-auto absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex items-center gap-1.5 rounded-full border border-[#17232d] bg-[#fffdf8] px-3 py-1.5 text-[9px] font-black uppercase tracking-[.12em] text-[#17232d] shadow-[3px_3px_0_#ed542d] transition-all hover:bg-[#17232d] hover:text-[#fffdf8] hover:shadow-[4px_4px_0_#ffbd5f]"
+                    title="Click to request a Free Operational Audit"
+                  >
+                    <span className="hero-orbit-layer-reverse inline-flex items-center gap-1.5" style={{ animationDuration: "55s" }}>
+                      <span className="h-2 w-2 rounded-full bg-[#ffbd5f] border border-[#17232d]" />
+                      <span>FREE AUDIT</span>
+                      <ArrowUpRight className="h-3 w-3 text-[#ed542d]" />
+                    </span>
+                  </button>
+                </div>
+
+                {/* Middle Orbit Ring (Radius 142px / 71% view width): Digital Presence Service Pill */}
+                <div
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[71%] h-[71%] rounded-full pointer-events-none hero-orbit-layer-reverse"
+                  style={{ animationDuration: "42s" }}
+                >
+                  <button
+                    onClick={() => scrollToServices("services")}
+                    className="pointer-events-auto absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 inline-flex items-center gap-1.5 rounded-full border border-[#17232d] bg-[#fffdf8] px-3 py-1.5 text-[9px] font-black uppercase tracking-[.12em] text-[#17232d] shadow-[3px_3px_0_#17232d] transition-all hover:bg-[#17232d] hover:text-[#fffdf8] hover:shadow-[4px_4px_0_#ed542d]"
+                    title="Click to view Digital Presence Services"
+                  >
+                    <span className="hero-orbit-layer-forward inline-flex items-center gap-1.5" style={{ animationDuration: "42s" }}>
+                      <span className="h-2 w-2 rounded-full bg-[#ed542d] border border-[#17232d]" />
+                      <span>DIGITAL PRESENCE</span>
+                      <ChevronRight className="h-3 w-3 text-[#ed542d]" />
+                    </span>
+                  </button>
+                </div>
+
+                {/* Inner Orbit Ring (Radius 108px / 54% view width): Core Infrastructure Service Pill */}
+                <div
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[54%] h-[54%] rounded-full pointer-events-none hero-orbit-layer-forward"
+                  style={{ animationDuration: "35s" }}
+                >
+                  <button
+                    onClick={() => scrollToServices("services")}
+                    className="pointer-events-auto absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 inline-flex items-center gap-1.5 rounded-full border border-[#17232d] bg-[#fffdf8] px-3 py-1.5 text-[9px] font-black uppercase tracking-[.12em] text-[#17232d] shadow-[3px_3px_0_#17232d] transition-all hover:bg-[#17232d] hover:text-[#fffdf8] hover:shadow-[4px_4px_0_#cbe9da]"
+                    title="Click to view Core Infrastructure Services"
+                  >
+                    <span className="hero-orbit-layer-reverse inline-flex items-center gap-1.5" style={{ animationDuration: "35s" }}>
+                      <span className="h-2 w-2 rounded-full bg-[#ffbd5f] border border-[#17232d]" />
+                      <span>CORE INFRASTRUCTURE</span>
+                      <ChevronRight className="h-3 w-3 text-[#ed542d]" />
+                    </span>
+                  </button>
+                </div>
+
               </div>
             </div>
           </div>
