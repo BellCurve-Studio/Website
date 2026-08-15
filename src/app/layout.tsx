@@ -20,17 +20,17 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BellCurve Studio | Custom Software & Web Engineering",
+  title: "BellCurve Studio | Business Systems Engineering for Organisations",
   description:
-    "Transforming ideas and legacy systems into modern, scalable software. We build web applications, website revamps, internal tools, and custom AI software.",
+    "We help organisations replace fragmented workflows with technology systems that work — starting with a free audit.",
   keywords: [
-    "Custom Software",
-    "Web Applications",
-    "Website Revamp",
-    "Internal Tools",
-    "CRM",
-    "SaaS",
-    "Next.js Development"
+    "Business Systems Engineering",
+    "Operational Audit",
+    "Digital Presence",
+    "Core Infrastructure",
+    "Custom Operations",
+    "BellCurve Studio",
+    "Workflow Automation",
   ],
 };
 
@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${jakartaSans.variable} ${jetbrainsMono.variable} h-full antialiased dark`}
+      className={`${instrumentSerif.variable} ${jakartaSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col selection:bg-[#ffbd5f] selection:text-[#17232d]">
         {children}

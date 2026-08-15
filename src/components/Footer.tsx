@@ -1,93 +1,126 @@
 "use client";
 
 import { ArrowRight, ArrowUp, Mail, MapPin } from "lucide-react";
+import Link from "next/link";
 
 interface FooterProps {
-  onOpenConsultation: () => void;
+  onOpenAudit?: () => void;
 }
 
 const navigation = [
-  { label: "What we build", href: "#services" },
-  { label: "Our method", href: "#process" },
-  { label: "Revamp simulator", href: "#revamp-simulator" },
-  { label: "Why BellCurve", href: "#why-us" },
+  { label: "Home", href: "/" },
+  { label: "Services & Pricing", href: "/#services" },
+  { label: "How We Work", href: "/#how-we-work" },
+  { label: "About BellCurve", href: "/#about" },
+  { label: "Case Studies", href: "/#work" },
+  { label: "Request Free Audit", href: "/audit" },
+  { label: "Contact Us", href: "/#contact" },
 ];
 
-export default function Footer({ onOpenConsultation }: FooterProps) {
+export default function Footer({ onOpenAudit }: FooterProps) {
   return (
-    <footer className="footer-studio relative overflow-hidden px-4 pb-5 pt-16 sm:px-7 sm:pt-24">
+    <footer className="footer-studio relative overflow-hidden px-4 pb-6 pt-12 sm:px-7 sm:pt-16 bg-[#d7e4ff] text-[#17232d] min-h-screen lg:h-screen flex flex-col justify-between">
       <div className="footer-orbit footer-orbit-one" aria-hidden="true" />
       <div className="footer-orbit footer-orbit-two" aria-hidden="true" />
 
-      <div className="relative mx-auto max-w-7xl">
-        <section className="footer-cta grid overflow-hidden rounded-[2rem] border border-[#17232d] bg-[#ffbd5f] shadow-[7px_7px_0_#17232d] lg:grid-cols-[1.25fr_.75fr]">
-          <div className="p-7 sm:p-10 lg:p-12">
-            <p className="mb-5 font-code-mono text-[10px] font-black uppercase tracking-[0.2em] text-[#56616a]">
-              Have a worthwhile problem?
+      <div className="relative mx-auto max-w-7xl w-full my-auto">
+        {/* Footer Conversion CTA Banner */}
+        <section className="footer-cta grid overflow-hidden rounded-2xl border border-[#17232d] bg-[#ffbd5f] shadow-[6px_6px_0_#17232d] lg:grid-cols-[1.25fr_.75fr]">
+          <div className="p-6 sm:p-8">
+            <p className="mb-2 font-code-mono text-[9px] font-black uppercase tracking-[0.2em] text-[#ed542d]">
+              Not sure what&apos;s actually broken?
             </p>
-            <h2 className="max-w-2xl text-4xl font-black leading-[.95] tracking-[-0.065em] text-[#17232d] sm:text-5xl lg:text-6xl">
-              Let&apos;s make it <em className="font-editorial-serif font-normal">real.</em>
+            <h2 className="max-w-2xl text-3xl font-black leading-[.95] tracking-[-0.065em] text-[#17232d] sm:text-4xl lg:text-5xl">
+              Let us <em className="font-editorial-serif font-normal text-[#ed542d]">look.</em>
             </h2>
-            <p className="mt-6 max-w-xl text-sm leading-relaxed text-[#40505a] sm:text-base">
-              Bring us the knotty brief, the aging product, or the ambitious next move. We&apos;ll help you find the clearest path to a useful thing.
+            <p className="mt-3 max-w-xl text-xs sm:text-sm leading-relaxed text-[#40505a] font-medium">
+              We&apos;ll audit your current website, enquiry flow, and internal workflows — free, no obligation. Handing you a clear, written diagnosis.
             </p>
-            <button
-              onClick={onOpenConsultation}
-              className="footer-cta-button mt-8 inline-flex items-center gap-3 rounded-full bg-[#17232d] px-5 py-3 text-sm font-bold text-[#fffdf8]"
+            <Link
+              href="/audit"
+              className="footer-cta-button mt-5 inline-flex items-center gap-2.5 rounded-full bg-[#17232d] px-6 py-3 text-xs font-bold uppercase tracking-[.14em] text-[#fffdf8] shadow-[3px_3px_0_#ed542d] transition-all hover:bg-[#ed542d]"
             >
-              Start a conversation <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </button>
+              <span>Request Free Audit</span>
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+            </Link>
           </div>
 
-          <div className="footer-cta-aside flex min-h-52 flex-col justify-between border-t border-[#17232d] p-7 sm:p-10 lg:min-h-full lg:border-l lg:border-t-0 lg:p-12">
-            <span className="grid h-11 w-11 place-items-center rounded-full border border-[#17232d] bg-[#d7e4ff] font-editorial-serif text-2xl text-[#ed542d]">B</span>
-            <p className="max-w-xs font-editorial-serif text-2xl leading-tight text-[#17232d] sm:text-3xl">
-              Thoughtful software, built for momentum.
+          <div className="footer-cta-aside flex flex-col justify-between border-t border-[#17232d] p-6 sm:p-8 lg:border-l lg:border-t-0 bg-[#fffdf8]">
+            <div className="flex items-center gap-2">
+              <span className="grid h-8 w-8 place-items-center rounded-full border border-[#17232d] bg-[#ed542d] font-editorial-serif text-xl text-[#fffdf8]">
+                B
+              </span>
+              <span className="font-code-mono text-[9px] font-black uppercase tracking-[.18em] text-[#17232d]">
+                BellCurve Studio
+              </span>
+            </div>
+            <p className="max-w-xs font-editorial-serif text-xl leading-tight text-[#17232d] sm:text-2xl mt-4">
+              Business Systems Engineering for Organisations.
             </p>
           </div>
         </section>
 
-        <div className="grid gap-10 py-16 sm:grid-cols-2 sm:py-20 lg:grid-cols-[1.35fr_.65fr_.75fr_.9fr] lg:gap-8">
+        {/* Footer Navigation & Details */}
+        <div className="grid gap-6 py-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_.65fr_.75fr_.9fr] lg:gap-8 border-b border-[#17232d]/15">
           <div>
-            <a href="#" className="inline-flex items-center gap-2.5 text-lg font-black tracking-[-0.06em] text-[#17232d]">
+            <Link href="/" className="inline-flex items-center gap-2 text-base font-black tracking-[-0.06em] text-[#17232d]">
               <span className="brand-mark">B</span>
-              <span>BELLCURVE<span className="font-normal text-[#ed542d]">®</span></span>
-            </a>
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-[#56616a]">
-              An independent software studio for teams building their next useful, durable digital product.
+              <span>BELLCURVE STUDIO</span>
+            </Link>
+            <p className="mt-2 max-w-sm text-xs leading-relaxed text-[#56616a] font-medium">
+              We help organisations replace fragmented, manual workflows with technology systems that work — starting with a free audit.
             </p>
           </div>
 
           <nav aria-label="Footer navigation">
-            <p className="footer-label">Explore</p>
-            <ul className="mt-5 space-y-3">
+            <p className="footer-label">Sitemap</p>
+            <ul className="mt-2 space-y-1.5">
               {navigation.map((item) => (
-                <li key={item.label}><a className="footer-link" href={item.href}>{item.label}</a></li>
+                <li key={item.label}>
+                  <Link className="footer-link text-xs font-bold text-[#17232d] hover:text-[#ed542d]" href={item.href}>
+                    {item.label}
+                  </Link>
+                </li>
               ))}
             </ul>
           </nav>
 
           <div>
-            <p className="footer-label">Start here</p>
-            <p className="mt-5 text-sm leading-relaxed text-[#56616a]">A clear brief is helpful. Curiosity and a good problem are enough.</p>
-            <button onClick={onOpenConsultation} className="footer-link mt-4 inline-flex items-center gap-2">
-              Get in touch <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-            </button>
+            <p className="footer-label">Primary Conversion</p>
+            <p className="mt-2 text-xs leading-relaxed text-[#56616a]">
+              A free diagnosis of where you are losing time, leads, or money.
+            </p>
+            <Link
+              href="/audit"
+              className="footer-link mt-2 inline-flex items-center gap-1.5 text-xs font-bold text-[#ed542d] hover:underline"
+            >
+              <span>Request Free Audit</span>
+              <ArrowRight className="h-3 w-3" aria-hidden="true" />
+            </Link>
           </div>
 
           <address className="not-italic">
-            <p className="footer-label">Find us</p>
-            <div className="mt-5 space-y-4 text-sm text-[#56616a]">
-              <a href="mailto:contact@bellcurvestudio.com" className="footer-contact"><Mail className="h-4 w-4" aria-hidden="true" />contact@bellcurvestudio.com</a>
-              <p className="footer-contact"><MapPin className="h-4 w-4" aria-hidden="true" />Working remotely, worldwide</p>
+            <p className="footer-label">Get In Touch</p>
+            <div className="mt-2 space-y-2 text-xs text-[#56616a]">
+              <a href="mailto:contact@bellcurvestudio.com" className="footer-contact font-bold text-[#17232d] hover:text-[#ed542d]">
+                <Mail className="h-3.5 w-3.5 text-[#ed542d]" aria-hidden="true" />
+                contact@bellcurvestudio.com
+              </a>
+              <p className="footer-contact font-medium">
+                <MapPin className="h-3.5 w-3.5 text-[#17232d]" aria-hidden="true" />
+                Remote Engineering Studio
+              </p>
             </div>
           </address>
         </div>
 
-        <div className="flex flex-col gap-4 border-t border-[#17232d]/20 py-6 text-xs font-medium text-[#56616a] sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2 py-4 text-xs font-medium text-[#56616a] sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} BellCurve Studio. All rights reserved.</p>
-          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="footer-link inline-flex w-fit items-center gap-2">
-            Back to top <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" />
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="footer-link inline-flex w-fit items-center gap-1.5 text-xs font-bold text-[#17232d] hover:text-[#ed542d]"
+          >
+            Back to top <ArrowUp className="h-3 w-3" aria-hidden="true" />
           </button>
         </div>
       </div>
