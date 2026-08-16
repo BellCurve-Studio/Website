@@ -5,17 +5,16 @@ import {
   MessageSquare,
   Mail,
   Clock3,
-  ArrowRight,
   ArrowUpRight,
   CheckCircle2,
   ShieldCheck,
-  Zap,
-  Terminal,
   Copy,
   Check,
   Send,
   UserCheck,
-  Sparkle
+  Sparkle,
+  Loader2,
+  AlertCircle
 } from "lucide-react";
 
 interface ContactSectionProps {
@@ -35,6 +34,8 @@ export default function ContactSection({ onOpenAudit }: ContactSectionProps) {
   });
 
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
 
   const topics = [
@@ -51,10 +52,38 @@ export default function ContactSection({ onOpenAudit }: ContactSectionProps) {
     setTimeout(() => setCopiedEmail(false), 2500);
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formData.name || !formData.email) return;
-    setSubmitted(true);
+
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          topic: selectedTopic,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMessage(data.error || "Failed to transmit message. Please try again.");
+      }
+    } catch (err: unknown) {
+      console.error("Submission error:", err);
+      setErrorMessage("Network error occurred. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -125,6 +154,7 @@ export default function ContactSection({ onOpenAudit }: ContactSectionProps) {
                     Primary Studio Email
                   </span>
                   <button
+                    type="button"
                     onClick={handleCopyEmail}
                     className="inline-flex items-center gap-1 font-code-mono text-[10px] font-bold text-[#ffbd5f] hover:text-white bg-white/10 hover:bg-white/20 px-2 py-0.5 rounded transition-all"
                   >
@@ -180,6 +210,7 @@ export default function ContactSection({ onOpenAudit }: ContactSectionProps) {
                 Skip the inquiry form and launch a free diagnostic review immediately.
               </p>
               <button
+                type="button"
                 onClick={onOpenAudit}
                 className="mt-2 w-full inline-flex items-center justify-center gap-1.5 rounded-xl border border-[#ffbd5f] bg-[#ffbd5f] py-2 px-3 text-xs font-black text-[#17232d] shadow-[2px_2px_0_#fffdf8] hover:bg-[#ed542d] hover:text-[#fffdf8] transition-all"
               >
@@ -200,12 +231,14 @@ export default function ContactSection({ onOpenAudit }: ContactSectionProps) {
                   Message Transmitted!
                 </h3>
                 <p className="text-xs sm:text-sm font-medium text-[#56616a] leading-relaxed max-w-md">
-                  Thank you, <strong>{formData.name}</strong>! Your inquiry regarding <strong>{selectedTopic}</strong> has been routed directly to our founders. We will reply to <strong>{formData.email}</strong> within 1 working day.
+                  Thank you, <strong>{formData.name}</strong>! Your inquiry regarding <strong>{selectedTopic}</strong> has been routed directly to our founders. A confirmation email has been sent to <strong>{formData.email}</strong>, and we will reply within 24 business hours.
                 </p>
                 <button
+                  type="button"
                   onClick={() => {
                     setSubmitted(false);
                     setFormData({ name: "", org: "", email: "", message: "" });
+                    setErrorMessage(null);
                   }}
                   className="rounded-xl border-2 border-[#17232d] bg-[#17232d] px-5 py-2 text-xs font-bold text-[#fffdf8] shadow-[2.5px_2.5px_0_#ffbd5f] transition-all hover:bg-[#ed542d]"
                 >
@@ -292,16 +325,34 @@ export default function ContactSection({ onOpenAudit }: ContactSectionProps) {
                   />
                 </label>
 
+                {/* Error Banner */}
+                {errorMessage && (
+                  <div className="flex items-center gap-2 rounded-xl border-2 border-red-500 bg-red-50 p-3 text-xs font-bold text-red-700">
+                    <AlertCircle className="h-4 w-4 shrink-0 text-red-600" />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
                 <div className="flex flex-wrap items-center justify-between gap-3 border-t-2 border-[#17232d]/15 pt-4">
                   <p className="text-[11px] font-bold text-[#56616a] flex items-center gap-1.5">
                     <ShieldCheck className="h-4 w-4 text-emerald-600" /> Direct founder response guaranteed
                   </p>
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#ed542d] px-6 py-3 text-xs font-black uppercase tracking-wider text-[#fffdf8] shadow-[3.5px_3.5px_0_#17232d] hover:bg-[#17232d] hover:text-[#ffbd5f] hover:-translate-y-0.5 transition-all"
+                    disabled={isSubmitting}
+                    className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#ed542d] px-6 py-3 text-xs font-black uppercase tracking-wider text-[#fffdf8] shadow-[3.5px_3.5px_0_#17232d] hover:bg-[#17232d] hover:text-[#ffbd5f] hover:-translate-y-0.5 transition-all disabled:opacity-60 disabled:pointer-events-none"
                   >
-                    <span className="text-[#fffdf8]">Transmit Message</span>
-                    <Send className="h-4 w-4 text-[#ffbd5f]" />
+                    {isSubmitting ? (
+                      <>
+                        <span className="text-[#fffdf8]">Transmitting...</span>
+                        <Loader2 className="h-4 w-4 text-[#ffbd5f] animate-spin" />
+                      </>
+                    ) : (
+                      <>
+                        <span className="text-[#fffdf8]">Transmit Message</span>
+                        <Send className="h-4 w-4 text-[#ffbd5f]" />
+                      </>
+                    )}
                   </button>
                 </div>
               </form>

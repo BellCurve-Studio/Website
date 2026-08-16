@@ -5,14 +5,13 @@ import {
   Sparkles,
   ArrowUpRight,
   CheckCircle2,
-  Clock3,
+  Check,
+  Sparkle,
+  FileText,
   FileCheck2,
   ShieldCheck,
-  Check,
-  Zap,
-  Sparkle,
-  Send,
-  FileText
+  Loader2,
+  AlertCircle
 } from "lucide-react";
 
 interface FreeAuditSectionProps {
@@ -29,12 +28,39 @@ export default function FreeAuditSection({ initialServiceTier }: FreeAuditSectio
     headache: "",
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!formData.orgName || !formData.email || !formData.contactName) return;
-    setSubmitted(true);
+    if (!formData.orgName || !formData.email || !formData.contactName || !formData.headache) return;
+
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const response = await fetch("/api/audit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMessage(data.error || "Failed to submit audit request. Please try again.");
+      }
+    } catch (err: unknown) {
+      console.error("Audit submission error:", err);
+      setErrorMessage("Network error occurred. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const steps = [
@@ -181,12 +207,14 @@ export default function FreeAuditSection({ initialServiceTier }: FreeAuditSectio
                   Thank you, {formData.contactName}!
                 </h3>
                 <p className="text-xs sm:text-sm font-medium text-[#56616a] leading-relaxed max-w-md">
-                  We will review the digital presence and operational intake for <strong>{formData.orgName}</strong>. Expect your written diagnosis within 3–5 business days at <strong>{formData.email}</strong>.
+                  We will review the digital presence and operational intake for <strong>{formData.orgName}</strong>. A confirmation receipt has been sent to <strong>{formData.email}</strong>, and you can expect your written diagnosis within 3–5 business days.
                 </p>
                 <button
+                  type="button"
                   onClick={() => {
                     setSubmitted(false);
                     setFormData({ orgName: "", contactName: "", email: "", phone: "", websiteUrl: "", headache: "" });
+                    setErrorMessage(null);
                   }}
                   className="rounded-xl border-2 border-[#17232d] bg-[#17232d] px-5 py-2 text-xs font-bold text-[#fffdf8] shadow-[2.5px_2.5px_0_#ffbd5f] transition-all hover:bg-[#ed542d]"
                 >
@@ -295,16 +323,34 @@ export default function FreeAuditSection({ initialServiceTier }: FreeAuditSectio
                   />
                 </label>
 
+                {/* Error Banner */}
+                {errorMessage && (
+                  <div className="flex items-center gap-2 rounded-xl border-2 border-red-500 bg-red-50 p-3 text-xs font-bold text-red-700">
+                    <AlertCircle className="h-4 w-4 shrink-0 text-red-600" />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
                 <div className="flex flex-wrap items-center justify-between gap-3 border-t-2 border-[#17232d]/15 pt-4">
                   <p className="text-[11px] font-bold text-[#56616a] flex items-center gap-1.5">
                     <ShieldCheck className="h-4 w-4 text-emerald-600" /> Free diagnosis • 0 sales pressure
                   </p>
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#ed542d] px-6 py-3 text-xs font-black uppercase tracking-wider text-[#fffdf8] shadow-[3.5px_3.5px_0_#17232d] hover:bg-[#17232d] hover:text-[#ffbd5f] hover:-translate-y-0.5 transition-all"
+                    disabled={isSubmitting}
+                    className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#ed542d] px-6 py-3 text-xs font-black uppercase tracking-wider text-[#fffdf8] shadow-[3.5px_3.5px_0_#17232d] hover:bg-[#17232d] hover:text-[#ffbd5f] hover:-translate-y-0.5 transition-all disabled:opacity-60 disabled:pointer-events-none"
                   >
-                    <span>Request Free Audit</span>
-                    <ArrowUpRight className="h-4 w-4 text-[#ffbd5f]" />
+                    {isSubmitting ? (
+                      <>
+                        <span>Submitting Request...</span>
+                        <Loader2 className="h-4 w-4 text-[#ffbd5f] animate-spin" />
+                      </>
+                    ) : (
+                      <>
+                        <span>Request Free Audit</span>
+                        <ArrowUpRight className="h-4 w-4 text-[#ffbd5f]" />
+                      </>
+                    )}
                   </button>
                 </div>
               </form>
