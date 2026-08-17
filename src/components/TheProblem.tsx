@@ -41,14 +41,14 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
     {
       id: "01",
       icon: Globe,
-      tag: "FRONTEND DISCONNECT",
+      tag: "LEAD DISCONNECT",
       title: "Disconnected Website",
-      metric: "38% Lost Leads",
-      headline: "Inbound leads land in email black holes",
+      metric: "MANUAL FOLLOW-UP",
+      headline: "A new enquiry comes in. Someone still has to handle it manually.",
       description:
-        "Your website doesn't talk directly to your CRM or fulfillment team. Leads require manual copy-pasting, causing delayed follow-ups and lost deals.",
-      impact: "Stranded leads & delayed customer response",
-      solution: "Direct webhook lead capture & instant automated notification flow.",
+        "Leads come through the website, email, or WhatsApp. Then someone copies, forwards, assigns, and follows up.",
+      impact: "The lead is 3 hours old before anyone responds. By then, they've moved on.",
+      solution: "Connect the enquiry to what happens next.",
       statusColor: "#ed542d",
     },
     {
@@ -56,25 +56,25 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
       icon: FileSpreadsheet,
       tag: "DATA CHAOS",
       title: "Untrusted Spreadsheets",
-      metric: "14 hrs/wk Wasted",
-      headline: "Sprawling Google Sheets nobody fully trusts",
+      metric: "VERSION DRIFT",
+      headline: "Everyone has a copy. Nobody knows which one is right.",
       description:
-        "Fragile formulas, duplicate rows, broken VLOOKUPs, and version drift. Your team spends hours manually cross-checking numbers before making decisions.",
-      impact: "Decisions made on outdated or corrupted data",
-      solution: "Unified SQL database back-end with automated real-time dashboards.",
+        "Numbers live across sheets, tabs, and files. Updates get missed. Someone has to check everything twice.",
+      impact: "Duplicate work. Wrong numbers. Decisions based on a version nobody updated.",
+      solution: "Put the data in one place everyone can trust.",
       statusColor: "#ffbd5f",
     },
     {
       id: "03",
       icon: MessageSquare,
       tag: "WORKFLOW FRICTION",
-      title: "Workaround Threads",
-      metric: "Zero Real-time Sync",
-      headline: "Chaotic WhatsApp and Slack threads as makeshift glue",
+      title: "WhatsApp as a Workflow",
+      metric: "MANUAL HANDOFFS",
+      headline: "Someone sends a message. Someone else has to remember to act.",
       description:
-        "WhatsApp and Slack threads acting as makeshift glue for core operational steps that should be automated software pipelines.",
-      impact: "Repeated admin drag & team operational fatigue",
-      solution: "Custom event-driven workflow engine that triggers actions automatically.",
+        "Approvals, updates, and reminders happen in group chats. Nothing is tracked. Nothing triggers automatically.",
+      impact: "Missed handoffs. Repeated follow-ups. Nobody sure where things stand.",
+      solution: "Turn repeated tasks into a real workflow.",
       statusColor: "#ed542d",
     },
   ];
@@ -105,12 +105,12 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
               </span>
               <AlertTriangle className="h-3.5 w-3.5 text-[#ed542d]" />
               <span className="font-code-mono text-[9px] font-black uppercase tracking-[.16em] text-[#17232d]">
-                Operational Diagnosis
+                OPERATIONAL FRICTION
               </span>
             </div>
 
             <h2 className="mt-4 text-4xl font-black leading-[1.02] tracking-[-.065em] text-[#17232d] sm:text-5xl md:text-6xl lg:text-[3.8rem]">
-              Most organisations run on a{" "}
+              Your operations probably run on a{" "}
               <span className="font-editorial-serif italic font-normal text-[#ed542d]">
                 patchwork.
               </span>
@@ -119,10 +119,10 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
 
           <div className="border-l-2 border-[#ed542d] pl-5 sm:pl-7">
             <p className="text-base font-semibold leading-relaxed text-[#17232d] sm:text-lg">
-              A website that doesn&apos;t talk to your enquiry process. A spreadsheet nobody trusts. A chat thread holding together a system.
+              A website that doesn&apos;t connect to your sales process. A spreadsheet nobody trusts. A WhatsApp thread holding everything together.
             </p>
             <p className="mt-2 font-editorial-serif text-base italic text-[#ed542d] sm:text-lg">
-              Every disconnected step costs you a lead, a delay, or a decision made without data.
+              None of these gaps feel urgent on their own. Together, they're the reason things feel slower than they should.
             </p>
           </div>
         </header>
@@ -281,7 +281,7 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
           <div className="flex items-center gap-3">
             <ShieldAlert className="h-5 w-5 text-[#ed542d] shrink-0" />
             <p className="text-xs font-bold text-[#17232d]">
-              Recognise these operational leaks in your business? We study where systems leak time before writing code.
+              Recognise any of these? We'll tell you what's fixable — for free.
             </p>
           </div>
 
@@ -289,7 +289,7 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
             onClick={onOpenAudit}
             className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-[#17232d] px-5 py-2 text-xs font-bold uppercase tracking-wider text-[#fffdf8] shadow-[3px_3px_0_#ffbd5f] transition-all hover:bg-[#ed542d] active:scale-95"
           >
-            <span>Get Free Operational Audit</span>
+            <span>GET FREE OPERATIONAL AUDIT</span>
             <ArrowUpRight className="h-3.5 w-3.5 text-[#ffbd5f] transition-transform duration-200 group-hover:rotate-45" />
           </button>
         </div>
