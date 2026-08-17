@@ -12,10 +12,10 @@ interface HeroProps {
 
 
 const MAIN_CONTENT_PHRASES = [
-"We'll diagnose the problem.",
-"We'll design the solution.",
-"We'll build the system.",
-"We'll scale what works."
+  "We'll diagnose the problem.",
+  "We'll design the solution.",
+  "We'll build the system.",
+  "We'll scale what works."
 ];
 
 export default function Hero({ onOpenAudit, onSeeHowWeWork }: HeroProps) {
@@ -205,25 +205,19 @@ export default function Hero({ onOpenAudit, onSeeHowWeWork }: HeroProps) {
 
       {/* Bottom Technical Studio Ribbon */}
       <div className="border-t border-[#17232d] bg-[#17232d] text-[#fffdf8] shadow-md w-full shrink-0">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-4 sm:px-7 md:flex-row md:items-center md:justify-between lg:px-8">
-          <div className="flex items-center gap-3">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#ed542d] animate-ping" />
-            <p className="font-code-mono text-[10px] font-black uppercase tracking-[.18em] text-[#ffbd5f]">
-              Business Systems Engineering Studio
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-bold text-[#fffdf8]/90 sm:text-sm">
-            <span className="flex items-center gap-2">
-              <Zap className="h-3.5 w-3.5 text-[#ffbd5f]" /> CLEAR DIAGNOSIS BEFORE PITCH
-            </span>
-            <span className="text-[#ed542d] hidden sm:inline">•</span>
-            <span className="flex items-center gap-2">
-              <Layers className="h-3.5 w-3.5 text-[#ffbd5f]" /> OUTCOMES BEFORE FEATURES
-            </span>
-            <span className="text-[#ed542d] hidden sm:inline">•</span>
-            <span>SYSTEMS THAT SCALE WITH YOU</span>
-          </div>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-7 lg:px-8">
+          <span className="flex items-center gap-2 text-xs font-bold text-[#fffdf8]/90 sm:text-sm">
+            <span className="h-2 w-2 rounded-full bg-[#ed542d] shrink-0" />
+            <span className="font-code-mono text-[10px] font-black uppercase tracking-[.18em] text-[#ffbd5f] whitespace-nowrap">CLEAR DIAGNOSIS BEFORE PITCH</span>
+          </span>
+          <span className="flex items-center gap-2 text-xs font-bold text-[#fffdf8]/90 sm:text-sm">
+            <span className="h-2 w-2 rounded-full bg-[#ed542d] shrink-0" />
+            <span className="font-code-mono text-[10px] font-black uppercase tracking-[.18em] text-[#ffbd5f] whitespace-nowrap">OUTCOMES BEFORE FEATURES</span>
+          </span>
+          <span className="flex items-center gap-2 text-xs font-bold text-[#fffdf8]/90 sm:text-sm">
+            <span className="h-2 w-2 rounded-full bg-[#ed542d] shrink-0" />
+            <span className="font-code-mono text-[10px] font-black uppercase tracking-[.18em] text-[#ffbd5f] whitespace-nowrap">SYSTEMS THAT SCALE WITH YOU</span>
+          </span>
         </div>
       </div>
     </section>
