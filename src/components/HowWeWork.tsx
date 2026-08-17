@@ -29,8 +29,8 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
   // Step 1 Widget state
   const [selectedFriction, setSelectedFriction] = useState<string>("leads");
   
-  // Step 3 Widget state (Jargon vs Plain English)
-  const [showPlainLanguage, setShowPlainLanguage] = useState<boolean>(true);
+  // Step 3 Widget state (Diagnosis selector)
+  const [selectedDiagnosis, setSelectedDiagnosis] = useState<string>("visits");
 
   // Step 4 Widget state (Architecture focus)
   const [activeNode, setActiveNode] = useState<string>("engine");
@@ -38,87 +38,87 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
   const steps = [
     {
       num: "01",
-      shortLabel: "01. Overview",
-      title: "Problem Overview",
-      tagline: "First Contact",
-      badge: "No Sales Pressure",
-      timeframe: "Day 1",
-      description: "You tell us what's not working in your business or website. Zero high-pressure sales calls — just an open conversation about friction points.",
+      shortLabel: "01. Understand",
+      title: "Understand the problem",
+      tagline: "Tell us what's happening.",
+      badge: "",
+      timeframe: "DAY 1",
+      description: "Tell us what's not working. We start with the problem, not a pre-decided solution.",
       icon: Sparkles,
       accent: "#ffbd5f",
-      deliverables: ["Initial context alignment", "Friction point identification", "Zero obligation review"],
+      deliverables: ["Understand the current setup", "Identify the pain points", "Define what needs fixing"],
     },
     {
       num: "02",
       shortLabel: "02. Audit",
-      title: "Free Internal Audit",
-      tagline: "Free Diagnosis",
-      badge: "Zero-Cost Audit",
-      timeframe: "Days 2–3",
-      description: "We deep dive into your website, lead enquiry flows, and internal backend processes free of charge to spot hidden revenue leaks.",
+      title: "Audit what exists",
+      tagline: "Look at the current system.",
+      badge: "FREE AUDIT",
+      timeframe: "DAYS 2–3",
+      description: "We look at your website, tools, workflows, and the way information moves through your organisation.",
       icon: FileSearch,
       accent: "#d7e4ff",
-      deliverables: ["Speed & UX diagnostic", "Lead leak detection", "Process efficiency audit"],
+      deliverables: ["Website & UX review", "Lead flow review", "Workflow review"],
     },
     {
       num: "03",
-      shortLabel: "03. Diagnosis",
-      title: "Problems Identified",
-      tagline: "Plain Language",
-      badge: "Zero Jargon",
-      timeframe: "Day 4",
-      description: "You receive a clear breakdown of what's costing you time or leads, written in plain, human English without confusing developer jargon.",
+      shortLabel: "03. Diagnose",
+      title: "Diagnose the real problem",
+      tagline: "Find the real bottleneck.",
+      badge: "OPERATIONAL CHECK",
+      timeframe: "DAY 4",
+      description: "We separate the symptom from the problem and find what's getting in the way.",
       icon: Compass,
       accent: "#cbe9da",
-      deliverables: ["Root cause analysis", "Lead loss cost mapping", "Actionable clarity report"],
+      deliverables: ["Find the root problem", "Clarify the impact", "Agree priorities"],
     },
     {
       num: "04",
-      shortLabel: "04. Solutions",
-      title: "Solutions Proposed",
-      tagline: "Architecture",
-      badge: "Fixed Cost Scoping",
-      timeframe: "Day 5",
-      description: "We map out the exact custom system architecture that fixes your problems, along with transparent, fixed-cost scoping.",
+      shortLabel: "04. Design",
+      title: "Design the right solution",
+      tagline: "Decide what should be built.",
+      badge: "BUILT AROUND YOU",
+      timeframe: "DAY 5",
+      description: "Once we know what needs fixing, we design the system, experience, or automation that actually solves it.",
       icon: Layers,
       accent: "#e7d7ff",
-      deliverables: ["System architecture map", "Fixed project scope", "Timeline & milestone plan"],
+      deliverables: ["Solution architecture", "Features that matter", "Clear project scope"],
     },
     {
       num: "05",
-      shortLabel: "05. Contract",
-      title: "Contract Sharing",
-      tagline: "Written Guarantee",
-      badge: "Signed In Writing",
-      timeframe: "Day 6",
-      description: "Scope, timeline, and investment are agreed upon and signed in writing first. No hidden fees or unexpected mid-project surprises.",
+      shortLabel: "05. Scope",
+      title: "Scope the work",
+      tagline: "Define the work clearly.",
+      badge: "CLEAR SCOPE",
+      timeframe: "DAY 6",
+      description: "We define what we're building, what it will take, when it will be delivered, and what it will cost.",
       icon: FileCheck,
       accent: "#ffd7c5",
-      deliverables: ["Legal clarity & scope lock", "Guaranteed delivery date", "Payment milestone agreement"],
+      deliverables: ["Project scope", "Timeline", "Investment"],
     },
     {
       num: "06",
       shortLabel: "06. Build",
-      title: "Senior Development",
-      tagline: "Senior Founders",
-      badge: "Direct Execution",
-      timeframe: "Weeks 1–4+",
-      description: "Founders build and deliver directly. No junior team handoffs, no lost context, and weekly live progress demos.",
+      title: "Build the solution",
+      tagline: "Turn the solution into reality.",
+      badge: "IN DEVELOPMENT",
+      timeframe: "WEEKS 1–4+",
+      description: "We turn the agreed solution into a working product, with regular progress updates along the way.",
       icon: Workflow,
       accent: "#ffbd5f",
-      deliverables: ["Founder-led engineering", "Weekly interactive demos", "Clean, maintainable code"],
+      deliverables: ["Working product", "Regular progress", "Testing & iteration"],
     },
     {
       num: "07",
-      shortLabel: "07. Migration",
-      title: "2 Months Free Migration",
-      tagline: "Zero Extra Cost",
-      badge: "Post Go-Live",
-      timeframe: "Post Launch",
-      description: "Once live, we handle all data migration from your existing system into the new workflow at no extra cost.",
+      shortLabel: "07. Improve",
+      title: "Launch & improve",
+      tagline: "Keep improving what works.",
+      badge: "KEEP MOVING",
+      timeframe: "POST LAUNCH",
+      description: "We launch the solution, learn from how it's used, and improve what matters next.",
       icon: Rocket,
       accent: "#cbe9da",
-      deliverables: ["Full data transfer", "Zero downtime cutover", "60-day post-launch support"],
+      deliverables: ["Launch", "Feedback", "Next improvements"],
     },
   ];
 
@@ -152,7 +152,7 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
         <header className="flex items-center justify-between">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#17232d]/20 bg-[#fffdf8] px-3 py-1 font-code-mono text-[10px] font-black uppercase tracking-[.18em] text-[#56616a] shadow-[2px_2px_0_#17232d]">
-              <Workflow className="h-3.5 w-3.5 text-[#ed542d]" aria-hidden="true" /> The 7-Step Framework
+              <Workflow className="h-3.5 w-3.5 text-[#ed542d]" aria-hidden="true" /> The BellCurve Process
             </div>
             <h2 className="mt-2 text-3xl font-black leading-none tracking-[-.06em] text-[#17232d] sm:text-4xl lg:text-5xl">
               How we <em className="font-editorial-serif font-normal text-[#ed542d]">work.</em>
@@ -167,7 +167,7 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-[#ed542d] animate-pulse" />
               <h3 className="font-code-mono text-[11px] font-black uppercase tracking-[.16em] text-[#17232d]">
-                Framework Pipeline Navigation
+                From Problem to Solution
               </h3>
             </div>
             <div className="flex items-center gap-2 font-code-mono text-[10px] font-black text-[#56616a]">
@@ -188,7 +188,7 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
               <div
                 className="absolute left-7 top-1/2 -z-0 h-1.5 -translate-y-1/2 rounded-full bg-[#ed542d] transition-all duration-500 ease-out"
                 style={{
-                  width: `${(activeStepIndex / (steps.length - 1)) * 92}%`,
+                  width: `${(activeStepIndex / (steps.length - 1)) * 100}%`,
                 }}
               />
 
@@ -253,9 +253,6 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
                     <ActiveIcon className="h-4.5 w-4.5 text-[#17232d]" />
                   </span>
                   <div>
-                    <span className="font-code-mono text-[10px] font-black uppercase tracking-[.18em] text-[#ed542d]">
-                      Step {activeStep.num} of 07 • {activeStep.timeframe}
-                    </span>
                     <h3 className="text-xl sm:text-2xl font-black text-[#17232d] tracking-tight">
                       {activeStep.title}
                     </h3>
@@ -316,7 +313,7 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
               <div className="flex items-center justify-between border-b-2 border-[#17232d]/15 pb-2.5">
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-[#ed542d] animate-ping" />
-                  <span className="font-code-mono text-xs font-black text-[#17232d]">Interactive Live Simulator</span>
+                  <span className="font-code-mono text-xs font-black text-[#17232d]">QUICK DIAGNOSIS</span>
                 </div>
                 <span className="rounded-full bg-[#ed542d] px-2.5 py-0.5 font-code-mono text-[9px] font-black uppercase text-white shadow-[1px_1px_0_#17232d]">
                   {activeStep.badge}
@@ -327,14 +324,14 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
               {activeStepIndex === 0 && (
                 <div className="my-3 space-y-3">
                   <p className="font-code-mono text-xs font-bold text-[#ed542d]">
-                    Click to test your current biggest operational bottleneck:
+                    Where does the friction start?
                   </p>
                   <div className="grid grid-cols-2 gap-2">
                     {[
-                      { id: "leads", label: "Leads Dropping Off", severity: "High Leakage" },
-                      { id: "speed", label: "Slow Website Speed", severity: "Bounce Risk" },
-                      { id: "manual", label: "Manual Copy-Pasting", severity: "Wasted Hours" },
-                      { id: "tech", label: "Outdated Tech Stack", severity: "Tech Debt" },
+                      { id: "leads", label: "LEADS GET LOST" },
+                      { id: "speed", label: "WEBSITE ISN'T CONVERTING" },
+                      { id: "manual", label: "TOO MUCH MANUAL WORK" },
+                      { id: "tech", label: "TOOLS DON'T TALK" },
                     ].map((item) => (
                       <button
                         key={item.id}
@@ -346,16 +343,14 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
                         }`}
                       >
                         <span className="block text-xs font-black">{item.label}</span>
-                        <span className="block text-[9px] font-bold text-[#ed542d] mt-0.5">{item.severity}</span>
                       </button>
                     ))}
                   </div>
                   <div className="rounded-xl border border-[#17232d]/20 bg-[#fffdf8] p-3 text-xs leading-relaxed text-[#17232d] shadow-[2px_2px_0_#17232d]/10">
-                    <strong className="text-[#ed542d]">Diagnostic Diagnosis: </strong>
-                    {selectedFriction === "leads" && "Enquiry form friction causes ~35% dropoffs before sales touchpoints."}
-                    {selectedFriction === "speed" && "Slow mobile load times hurt SEO rankings and lead response rates."}
-                    {selectedFriction === "manual" && "Founders waste 10+ hours weekly manually syncing client records."}
-                    {selectedFriction === "tech" && "Fragile legacy systems that break whenever updates occur."}
+                    {selectedFriction === "leads" && "Enquiries come in, but follow-up depends on someone remembering to do it."}
+                    {selectedFriction === "speed" && "Your website gets attention, but doesn't make the next step easy."}
+                    {selectedFriction === "manual" && "Your team spends time moving information between tools instead of doing the work."}
+                    {selectedFriction === "tech" && "Important information is spread across systems that don't work together."}
                   </div>
                 </div>
               )}
@@ -364,7 +359,7 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
               {activeStepIndex === 1 && (
                 <div className="my-3 space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="font-code-mono text-xs font-bold text-[#17232d]">Audit Performance Meter</span>
+                    <span className="font-code-mono text-xs font-bold text-[#17232d]">WHAT WE LOOK AT</span>
                     <span className="inline-flex items-center gap-1 text-[10px] font-black text-[#059669] bg-[#cbe9da] px-2 py-0.5 rounded border border-[#17232d]">
                       <Zap className="h-3 w-3 fill-current" /> Live Scan
                     </span>
@@ -373,8 +368,8 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
                   <div className="space-y-3 rounded-xl border border-[#17232d]/20 bg-[#fffdf8] p-3.5 shadow-[2px_2px_0_#17232d]/10">
                     <div>
                       <div className="flex justify-between text-xs font-bold text-[#17232d] mb-1">
-                        <span>Web Speed & Mobile UX</span>
-                        <span className="text-[#059669]">98 / 100 (Optimized)</span>
+                        <span>DIGITAL EXPERIENCE</span>
+                        <span className="text-[#56616a]">Website, UX, mobile</span>
                       </div>
                       <div className="h-2 w-full rounded-full bg-[#17232d]/10 overflow-hidden">
                         <div className="h-full bg-[#059669] w-[98%] transition-all duration-700 ease-out" />
@@ -383,8 +378,8 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
 
                     <div>
                       <div className="flex justify-between text-xs font-bold text-[#17232d] mb-1">
-                        <span>Lead Conversion Flow</span>
-                        <span className="text-[#ed542d]">Audit Needed (65%)</span>
+                        <span>LEAD FLOW</span>
+                        <span className="text-[#56616a]">Enquiry → follow-up</span>
                       </div>
                       <div className="h-2 w-full rounded-full bg-[#17232d]/10 overflow-hidden">
                         <div className="h-full bg-[#ed542d] w-[65%] transition-all duration-700 ease-out" />
@@ -393,8 +388,8 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
 
                     <div>
                       <div className="flex justify-between text-xs font-bold text-[#17232d] mb-1">
-                        <span>Process Automation Sync</span>
-                        <span className="text-[#ed542d]">Leak Found (40%)</span>
+                        <span>WORKFLOWS</span>
+                        <span className="text-[#56616a]">Manual steps → handoffs</span>
                       </div>
                       <div className="h-2 w-full rounded-full bg-[#17232d]/10 overflow-hidden">
                         <div className="h-full bg-[#ffbd5f] w-[40%] transition-all duration-700 ease-out" />
@@ -404,32 +399,58 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
                 </div>
               )}
 
-              {/* SIMULATOR STEP 3: Problems Identified (Jargon vs Plain English) */}
+              {/* SIMULATOR STEP 3: Diagnose the real problem */}
               {activeStepIndex === 2 && (
                 <div className="my-3 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-code-mono text-xs font-bold text-[#56616a]">Select Presentation Style:</span>
-                    <button
-                      onClick={() => setShowPlainLanguage(!showPlainLanguage)}
-                      className="rounded-lg border-2 border-[#17232d] bg-[#17232d] px-2.5 py-1 text-xs font-bold text-white shadow-[2px_2px_0_#ffbd5f] hover:bg-[#ed542d] transition-all"
-                    >
-                      Toggle: {showPlainLanguage ? "Plain English" : "Dev Jargon"}
-                    </button>
+                  {/* <p className="font-code-mono text-xs font-bold text-[#ed542d]">
+                    WHAT SOUNDS FAMILIAR?
+                  </p> */}
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      { id: "visits", label: "FEW WEBSITE ENQUIRIES" },
+                      { id: "manual", label: "TOO MUCH MANUAL WORK" },
+                      { id: "stuck", label: "WORK GETS STUCK" },
+                      { id: "tools", label: "TOOLS DON'T CONNECT" },
+                    ].map((item) => (
+                      <button
+                        key={item.id}
+                        onClick={() => setSelectedDiagnosis(item.id)}
+                        className={`rounded-xl border-2 p-2.5 text-left transition-all duration-300 ${
+                          selectedDiagnosis === item.id
+                            ? "border-[#17232d] bg-[#cbe9da] text-[#17232d] shadow-[2.5px_2.5px_0_#17232d] -translate-y-0.5"
+                            : "border-[#17232d]/20 bg-[#fffdf8] text-[#56616a] hover:border-[#17232d] hover:bg-white"
+                        }`}
+                      >
+                        <span className="block text-xs font-black">{item.label}</span>
+                      </button>
+                    ))}
                   </div>
 
-                  <div className="rounded-xl border-2 border-[#17232d] bg-[#fffdf8] p-3.5 shadow-[3px_3px_0_#cbe9da] space-y-1.5">
-                    <span className="font-code-mono text-[9px] uppercase font-black text-[#ed542d]">
-                      {showPlainLanguage ? "PLAIN ENGLISH DIAGNOSIS" : "TECHNICAL DEVELOPER JARGON"}
-                    </span>
-                    <p className="text-xs font-bold leading-relaxed text-[#17232d]">
-                      {showPlainLanguage
-                        ? "“Your website takes 6 seconds to load on phones. Customers abandon the page before seeing your contact form, losing ~₹80,000 in leads monthly.”"
-                        : "“Monolithic REST endpoint overhead and uncompressed bundle sizes causing render-blocking paint delays exceeding 6000ms.”"}
-                    </p>
-                  </div>
-
-                  <div className="rounded-lg border border-[#17232d]/20 bg-[#cbe9da] p-2 text-[10px] font-black text-[#17232d]">
-                    ✓ Guaranteed 100% plain language clarity in all reports.
+                  <div className="rounded-xl border-2 border-[#17232d] bg-[#fffdf8] p-3.5 shadow-[3px_3px_0_#cbe9da]">
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <span className="font-code-mono text-[9px] uppercase font-black text-[#ed542d] block mb-1">
+                          WHAT YOU'RE SEEING
+                        </span>
+                        <p className="text-xs font-bold leading-snug text-[#17232d]">
+                          {selectedDiagnosis === "visits" && "Visitors aren't turning into enquiries."}
+                          {selectedDiagnosis === "manual" && "Your team keeps doing things manually."}
+                          {selectedDiagnosis === "stuck" && "Tasks keep getting passed around."}
+                          {selectedDiagnosis === "tools" && "Your tools don't share information."}
+                        </p>
+                      </div>
+                      <div className="border-l border-[#17232d]/10 pl-3">
+                        <span className="font-code-mono text-[9px] uppercase font-black text-[#56616a] block mb-1">
+                          WHAT'S GETTING IN THE WAY
+                        </span>
+                        <p className="text-xs font-bold leading-snug text-[#17232d]">
+                          {selectedDiagnosis === "visits" && "The enquiry path has friction."}
+                          {selectedDiagnosis === "manual" && "Too many manual steps."}
+                          {selectedDiagnosis === "stuck" && "Too many manual handoffs."}
+                          {selectedDiagnosis === "tools" && "People fill the gaps manually."}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
@@ -438,13 +459,13 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
               {activeStepIndex === 3 && (
                 <div className="my-3 space-y-2.5">
                   <p className="font-code-mono text-xs font-bold text-[#ed542d]">
-                    Click architectural components to inspect proposed fix:
+                    WHAT THE SOLUTION COULD INCLUDE
                   </p>
                   <div className="grid grid-cols-3 gap-2 text-center">
                     {[
-                      { id: "frontend", title: "Next.js UI", sub: "Lightning Fast" },
-                      { id: "engine", title: "API Engine", sub: "Zero Latency" },
-                      { id: "database", title: "Database Sync", sub: "100% Reliable" },
+                      { id: "frontend", title: "DIGITAL EXPERIENCE", sub: "Website / portal" },
+                      { id: "engine", title: "BUSINESS SYSTEM", sub: "Internal tools / dashboard" },
+                      { id: "database", title: "AUTOMATION", sub: "Workflows / integrations" },
                     ].map((node) => (
                       <button
                         key={node.id}
@@ -462,9 +483,9 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
                   </div>
 
                   <div className="rounded-xl border-2 border-[#17232d] bg-[#fffdf8] p-3 text-xs font-bold leading-relaxed text-[#17232d] shadow-[2px_2px_0_#17232d]">
-                    {activeNode === "frontend" && "Clean, responsive user interface built for high conversion and instant page loads."}
-                    {activeNode === "engine" && "Robust backend API connecting your website directly to your internal workflow without human manual effort."}
-                    {activeNode === "database" && "High-performance database setup with automated backups and instant query speeds."}
+                    {activeNode === "frontend" && "A website or portal designed around the way your customers interact with you."}
+                    {activeNode === "engine" && "A tool built around the way your team actually works."}
+                    {activeNode === "database" && "Remove repetitive steps and connect the tools your team already uses."}
                   </div>
                 </div>
               )}
@@ -474,16 +495,16 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
                 <div className="my-3 space-y-2.5">
                   <div className="rounded-xl border-2 border-[#17232d] bg-[#fffdf8] p-3.5 shadow-[3px_3px_0_#ffd7c5] space-y-2">
                     <div className="flex items-center justify-between border-b border-[#17232d]/15 pb-1.5">
-                      <span className="font-code-mono text-xs font-black text-[#17232d]">BELLCURVE SCOPE CONTRACT</span>
+                      <span className="font-code-mono text-xs font-black text-[#17232d]">YOUR PROJECT SCOPE</span>
                       <FileCheck className="h-4 w-4 text-[#ed542d]" />
                     </div>
                     <ul className="space-y-1 text-xs font-bold text-[#17232d]">
-                      <li className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-[#ed542d]" /> Fixed Investment Scope (Zero Hidden Costs)</li>
-                      <li className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-[#ed542d]" /> Guaranteed Delivery Timeline</li>
-                      <li className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-[#ed542d]" /> Full Source Code & IP Ownership</li>
+                      <li className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-[#ed542d]" /> What we're building</li>
+                      <li className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-[#ed542d]" /> Timeline</li>
+                      <li className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-[#ed542d]" /> Investment</li>
                     </ul>
                     <div className="mt-1 inline-block rounded border border-[#17232d] bg-[#ed542d] px-2 py-0.5 text-[9px] font-black text-white uppercase tracking-widest shadow-[1px_1px_0_#17232d]">
-                      SIGNED IN WRITING FIRST
+                      CLEARLY DEFINED BEFORE DEVELOPMENT STARTS
                     </div>
                   </div>
                 </div>
@@ -493,14 +514,16 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
               {activeStepIndex === 5 && (
                 <div className="my-3 space-y-2.5 font-code-mono">
                   <div className="flex items-center gap-2 text-xs font-black text-[#17232d] border-b border-[#17232d]/15 pb-1.5">
-                    <Terminal className="h-4 w-4 text-[#ed542d]" /> Founder Development Stream
+                    <Terminal className="h-4 w-4 text-[#ed542d]" /> BUILD PROGRESS
                   </div>
                   <div className="space-y-1 rounded-xl border-2 border-[#17232d] bg-[#fffdf8] p-3 shadow-[2.5px_2.5px_0_#ffbd5f] text-xs font-bold">
-                    <p className="text-[#ed542d]">&gt; git commit -m &quot;feat: core high-speed architecture&quot;</p>
-                    <p className="text-[#17232d]">&gt; Author: Senior Founders Direct</p>
-                    <p className="text-[#059669]">&gt; Status: 0% Junior handoffs, 100% senior craft</p>
-                    <p className="text-[#56616a]">&gt; Weekly Live Demo: Active &amp; Ready</p>
+                    <p className="text-[#059669]">&gt; DISCOVERY ✓</p>
+                    <p className="text-[#059669]">&gt; DESIGN ✓</p>
+                    <p className="text-[#ed542d]">&gt; DEVELOPMENT →</p>
+                    <p className="text-[#56616a]">&gt; TESTING</p>
+                    <p className="text-[#56616a]">&gt; LAUNCH</p>
                   </div>
+                  <p className="text-xs font-bold text-[#56616a] leading-relaxed">Progress stays visible throughout the build.</p>
                 </div>
               )}
 
@@ -508,34 +531,40 @@ export default function HowWeWork({ onOpenAudit }: HowWeWorkProps) {
               {activeStepIndex === 6 && (
                 <div className="my-3 space-y-3">
                   <div className="flex items-center justify-between text-xs font-black text-[#17232d]">
-                    <span>Seamless Data Migration</span>
-                    <span className="text-[#059669] bg-[#cbe9da] px-2 py-0.5 rounded border border-[#17232d]">100% SAFE</span>
+                    <span>AFTER LAUNCH</span>
+                    <span className="text-[#059669] bg-[#cbe9da] px-2 py-0.5 rounded border border-[#17232d]">KEEP MOVING</span>
                   </div>
                   <div className="space-y-2 rounded-xl border-2 border-[#17232d] bg-[#fffdf8] p-3.5 shadow-[2.5px_2.5px_0_#cbe9da]">
                     <div className="flex justify-between text-xs font-bold text-[#17232d]">
-                      <span>Database Records Transferred</span>
-                      <span className="text-[#059669]">Completed</span>
+                      <span>LAUNCH</span>
+                      <span className="text-[#56616a]">Put it into use.</span>
                     </div>
-                    <div className="h-2.5 w-full rounded-full bg-[#17232d]/10 overflow-hidden">
-                      <div className="h-full bg-[#059669] w-full transition-all duration-700 ease-out" />
+                    <div className="flex justify-between text-xs font-bold text-[#17232d]">
+                      <span>LEARN</span>
+                      <span className="text-[#56616a]">See what works.</span>
+                    </div>
+                    <div className="flex justify-between text-xs font-bold text-[#17232d]">
+                      <span>IMPROVE</span>
+                      <span className="text-[#56616a]">Fix what doesn't.</span>
+                    </div>
+                    <div className="flex justify-between text-xs font-bold text-[#17232d]">
+                      <span>SCALE</span>
+                      <span className="text-[#56616a]">Build what's next.</span>
                     </div>
                   </div>
-                  <p className="text-xs font-bold text-[#56616a] leading-relaxed">
-                    We stay with you for 60 days post launch to ensure zero downtime and migrate all legacy data at no extra charge.
-                  </p>
                 </div>
               )}
 
               {/* Simulator Footer CTA */}
               <div className="mt-2 flex items-center justify-between border-t-2 border-[#17232d]/15 pt-2.5">
                 <span className="text-xs text-[#56616a] font-bold">
-                  Need scoping for your project?
+                  Have a problem worth solving?
                 </span>
                 <button
                   onClick={onOpenAudit}
                   className="inline-flex items-center gap-1.5 rounded-lg bg-[#ed542d] px-3 py-1.5 text-xs font-black text-white shadow-[2px_2px_0_#17232d] hover:-translate-y-0.5 transition-all"
                 >
-                  Free Audit <ArrowRight className="h-3.5 w-3.5" />
+                  GET FREE AUDIT <ArrowRight className="h-3.5 w-3.5" />
                 </button>
               </div>
             </div>
