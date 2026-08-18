@@ -7,7 +7,6 @@ import {
   FileSpreadsheet,
   Globe,
   MessageSquare,
-  ShieldAlert,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -271,28 +270,7 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
           </div>
         </div>
 
-        {/* Bottom Banner */}
-        <div
-          style={{ transitionDelay: isVisible ? "400ms" : "0ms" }}
-          className={`mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-[#17232d] bg-[#fffdf8] px-6 py-4 shadow-[4px_4px_0_#17232d] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-        >
-          <div className="flex items-center gap-3">
-            <ShieldAlert className="h-5 w-5 text-[#ed542d] shrink-0" />
-            <p className="text-xs font-bold text-[#17232d]">
-              Recognise any of these? We'll tell you what's fixable for free.
-            </p>
-          </div>
 
-          <button
-            onClick={onOpenAudit}
-            className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-[#17232d] px-5 py-2 text-xs font-bold uppercase tracking-wider text-[#fffdf8] shadow-[3px_3px_0_#ffbd5f] transition-all hover:bg-[#ed542d] active:scale-95"
-          >
-            <span>GET FREE OPERATIONAL AUDIT</span>
-            <ArrowUpRight className="h-3.5 w-3.5 text-[#ffbd5f] transition-transform duration-200 group-hover:rotate-45" />
-          </button>
-        </div>
 
       </div>
     </section>
