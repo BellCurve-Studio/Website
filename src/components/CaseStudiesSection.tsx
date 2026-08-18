@@ -42,7 +42,7 @@ export default function CaseStudiesSection({ onOpenAudit }: CaseStudiesSectionPr
               </span>
 
               <h3 className="mt-3 font-editorial-serif text-2xl sm:text-3xl text-[#fffdf8] font-normal leading-snug">
-                “We&apos;re early — our first engagements are underway. Want to be our next case study?”
+                “We&apos;re early our first engagements are underway. Want to be our next case study?”
               </h3>
 
               <p className="mt-2 text-xs leading-relaxed text-[#d6dce1]">

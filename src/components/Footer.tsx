@@ -96,7 +96,7 @@ export default function Footer({ onOpenAudit }: FooterProps) {
             </Link>
 
             <p className="max-w-sm text-xs leading-relaxed text-[#56616a] font-medium">
-              We design and build the systems businesses rely on — from customer-facing products to the workflows behind them.
+              We design and build the systems businesses rely on from customer-facing products to the workflows behind them.
             </p>
 
             <div className="pt-1">

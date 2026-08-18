@@ -47,7 +47,7 @@ export default function AboutSection({ onOpenAudit }: AboutSectionProps) {
         {/* ── TWO-COLUMN GRID ── */}
         <div className="grid lg:grid-cols-[1fr_1fr] gap-6 lg:gap-8 items-start">
 
-          {/* LEFT COLUMN — Identity + Story */}
+          {/* LEFT COLUMN Identity + Story */}
           <div className="flex flex-col gap-4">
             {/* Badge + Headline */}
             <div className="scroll-reveal">
@@ -87,7 +87,7 @@ export default function AboutSection({ onOpenAudit }: AboutSectionProps) {
             </div>
           </div>
 
-          {/* RIGHT COLUMN — How we think + Closing */}
+          {/* RIGHT COLUMN How we think + Closing */}
           <div className="flex flex-col gap-4">
             {/* How we think */}
             <div className="scroll-reveal">

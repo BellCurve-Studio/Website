@@ -169,7 +169,7 @@ export default function ContactSection({ onOpenAudit }: ContactSectionProps) {
                     <CheckCircle2 className="h-8 w-8 text-[#17232d]" />
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-[#17232d]">
-                    Thanks — we&apos;ve got it.
+                    Thanks we&apos;ve got it.
                   </h3>
                   <p className="text-sm sm:text-[15px] font-medium text-[#56616a] leading-relaxed max-w-sm">
                     Thanks, <strong>{formData.name}</strong>. We&apos;ve received your note and will read through it carefully. If there&apos;s something worth digging into, we&apos;ll get back to you with the next question.

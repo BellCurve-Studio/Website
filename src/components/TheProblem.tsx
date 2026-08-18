@@ -281,7 +281,7 @@ export default function TheProblem({ onOpenAudit }: TheProblemProps) {
           <div className="flex items-center gap-3">
             <ShieldAlert className="h-5 w-5 text-[#ed542d] shrink-0" />
             <p className="text-xs font-bold text-[#17232d]">
-              Recognise any of these? We'll tell you what's fixable — for free.
+              Recognise any of these? We'll tell you what's fixable for free.
             </p>
           </div>
 

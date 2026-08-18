@@ -22,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "BellCurve Studio | Business Systems Engineering for Organisations",
   description:
-    "We help organisations replace fragmented workflows with technology systems that work — starting with a free audit.",
+    "We help organisations replace fragmented workflows with technology systems that work.",
   keywords: [
     "Business Systems Engineering",
     "Operational Audit",

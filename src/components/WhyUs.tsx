@@ -29,7 +29,7 @@ export default function WhyUs({ onOpenAudit }: WhyUsProps) {
       icon: Search,
       accent: "#ffbd5f",
       description:
-        "Before we talk about features or technology, we need to understand what is actually happening. A slow website, too much manual work, or a confusing customer journey — these may look like separate problems. Often they are symptoms of something underneath.",
+        "Before we talk about features or technology, we need to understand what is actually happening. A slow website, too much manual work, or a confusing customer journey these may look like separate problems. Often they are symptoms of something underneath.",
       highlights: ["Clearer problem definition", "Less unnecessary work", "A better starting point"],
     },
     {
@@ -40,7 +40,7 @@ export default function WhyUs({ onOpenAudit }: WhyUsProps) {
       icon: XCircle,
       accent: "#d7e4ff",
       description:
-        "Software is not always the answer. Sometimes a clearer process, a better-used tool you already have, or a simpler workflow solves the problem. We are willing to say so — because the relationship matters more than the project.",
+        "Software is not always the answer. Sometimes a clearer process, a better-used tool you already have, or a simpler workflow solves the problem. We are willing to say so because the relationship matters more than the project.",
       highlights: ["No unnecessary builds", "Simpler solutions first", "Advice you can trust"],
     },
     {
@@ -116,7 +116,7 @@ export default function WhyUs({ onOpenAudit }: WhyUsProps) {
             </h2>
 
             <p className="mt-3 max-w-xl text-xs sm:text-sm font-medium leading-relaxed text-[#40505a]">
-              We do not start by asking what you want us to build. We start by understanding what is getting in the way — then figure out what is actually worth building.
+              We do not start by asking what you want us to build. We start by understanding what is getting in the way then figure out what is actually worth building.
             </p>
           </div>
         </header>
@@ -230,7 +230,7 @@ export default function WhyUs({ onOpenAudit }: WhyUsProps) {
                       </div>
                     </div>
                     <div className="text-[10px] font-bold text-[#56616a] border-t border-[#17232d]/10 pt-1.5">
-                      The answer usually changes what gets built — or whether anything needs to be built at all.
+                      The answer usually changes what gets built or whether anything needs to be built at all.
                     </div>
                   </div>
                 )}
@@ -275,7 +275,7 @@ export default function WhyUs({ onOpenAudit }: WhyUsProps) {
                     <div className="flex-1 flex flex-col justify-center space-y-1">
                       {[
                         { label: "Start with your team", detail: "How do people actually do the work today?" },
-                        { label: "Map the real process", detail: "Not the ideal one — the real one." },
+                        { label: "Map the real process", detail: "Not the ideal one the real one." },
                         { label: "Design around that", detail: "The system should feel obvious to the people using it." },
                       ].map((step, i) => (
                         <div key={i} className="flex items-start gap-2.5 rounded-xl border border-[#17232d]/15 bg-[#fffdf8] p-2.5">
