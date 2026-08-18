@@ -13,7 +13,6 @@ const navigation = [
   { label: "Services", href: "/#services" },
   { label: "How We Work", href: "/#how-we-work" },
   { label: "About BellCurve", href: "/#about" },
-  { label: "Request Free Audit", href: "/audit" },
   { label: "Contact Us", href: "/#contact" },
 ];
 
@@ -48,7 +47,7 @@ export default function Footer({ onOpenAudit }: FooterProps) {
 
             <div className="mt-6">
               <Link
-                href="/audit"
+                href="/#contact"
                 onClick={handleAuditClick}
                 className="footer-cta-button inline-flex items-center gap-2.5 rounded-full bg-[#17232d] px-6 py-3 text-xs font-black uppercase tracking-[.14em] text-[#fffdf8] shadow-[3.5px_3.5px_0_#ed542d] transition-all hover:bg-[#ed542d] hover:shadow-[4px_4px_0_#17232d] hover:-translate-y-0.5"
               >
@@ -145,7 +144,7 @@ export default function Footer({ onOpenAudit }: FooterProps) {
               Not sure what needs changing? Start with a conversation about what&apos;s not working.
             </p>
             <Link
-              href="/audit"
+              href="/#contact"
               onClick={handleAuditClick}
               className="footer-link mt-3 inline-flex items-center gap-1.5 text-xs font-black text-[#ed542d] hover:underline"
             >

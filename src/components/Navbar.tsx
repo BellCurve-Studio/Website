@@ -57,7 +57,6 @@ export default function Navbar({ onOpenAudit }: NavbarProps) {
     { name: "How We Work", href: "/#how-we-work" },
     { name: "About", href: "/#about" },
     { name: "Work", href: "/#work" },
-    { name: "Free Audit", href: "/audit" },
     { name: "Contact", href: "/#contact" },
   ];
 
@@ -85,7 +84,7 @@ export default function Navbar({ onOpenAudit }: NavbarProps) {
     if (onOpenAudit) {
       onOpenAudit();
     } else {
-      window.location.href = "/audit";
+      window.location.href = "/#contact";
     }
   };
 
@@ -116,9 +115,9 @@ export default function Navbar({ onOpenAudit }: NavbarProps) {
         </div>
 
         <div className="nav-actions">
-          <Link href="/audit" className="nav-cta hidden md:inline-flex">
+          <button onClick={handleAuditClick} className="nav-cta hidden md:inline-flex">
             Get Free Audit <span className="nav-cta-icon"><ArrowUpRight className="h-3.5 w-3.5" /></span>
-          </Link>
+          </button>
           <button
             onClick={() => setOpen(!open)}
             className="nav-menu transition-transform duration-200 hover:scale-105 active:scale-95"
@@ -195,7 +194,21 @@ export default function Navbar({ onOpenAudit }: NavbarProps) {
                 <Link
                   key={link.name}
                   href={link.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => {
+                    setOpen(false);
+                    if (link.href.startsWith("/#") && window.location.pathname === "/") {
+                      const targetId = link.href.replace("/#", "");
+                      const element = document.getElementById(targetId);
+                      if (element) {
+                        e.preventDefault();
+                        element.scrollIntoView({ behavior: "smooth" });
+                        window.history.pushState(null, "", `#${targetId}`);
+                      }
+                    } else if (link.href === "/" && window.location.pathname === "/") {
+                      e.preventDefault();
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                  }}
                   className="group flex items-center justify-between border-b border-[#17232d]/10 py-3.5 transition-all duration-200 hover:border-[#ed542d] hover:pl-2"
                 >
                   <div className="flex items-baseline gap-4">
