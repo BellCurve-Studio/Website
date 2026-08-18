@@ -104,8 +104,20 @@ export function getContactUserEmail(data: ContactFormData): { subject: string; h
       
       <table role="presentation" width="100%" cellspacing="0" cellpadding="4" style="font-size: 13px; color: #17232d;">
         <tr>
-          <td width="30%" style="font-weight: 800; color: #56616a;">Topic:</td>
-          <td style="font-weight: 700;">${data.topic || "General"}</td>
+          <td width="30%" style="font-weight: 800; color: #56616a; vertical-align: top; padding-top: 6px;">Topic:</td>
+          <td style="font-weight: 700;">
+            ${
+              data.topic && data.topic !== "Not specified"
+                ? data.topic
+                    .split(', ')
+                    .map(
+                      (t) =>
+                        `<span style="display: inline-block; background-color: #fffdf8; color: #17232d; border: 1.5px solid #17232d; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 800; margin-right: 4px; margin-bottom: 4px; box-shadow: 1.5px 1.5px 0 #ed542d;">${t}</span>`
+                    )
+                    .join('')
+                : 'General'
+            }
+          </td>
         </tr>
         ${data.org ? `
         <tr>
@@ -158,11 +170,31 @@ connect@bellcurvestudio.com
  * 2. Contact Form - Team Notification Email (connect@bellcurvestudio.com)
  */
 export function getContactTeamEmail(data: ContactFormData): { subject: string; html: string; text: string } {
-  const subject = `[New Contact Lead] ${data.name} - ${data.topic || "General Enquiry"}`;
+  const subject = `[New Contact Lead] ${data.name}${data.org ? ` (${data.org})` : ""} - Website Inquiry`;
 
   const html = wrapTemplate("New Contact Form Inquiry", `
-    <div style="background-color: #ffbd5f; color: #17232d; border: 2px solid #17232d; border-radius: 10px; padding: 10px 16px; font-weight: 900; font-size: 12px; font-family: 'Courier New', Courier, monospace; margin-bottom: 20px;">
+    <div style="background-color: #ffbd5f; color: #17232d; border: 2px solid #17232d; border-radius: 10px; padding: 10px 16px; font-weight: 900; font-size: 12px; font-family: 'Courier New', Courier, monospace; margin-bottom: 16px;">
       ⚡ NEW WEBSITE INQUIRY RECEIVED
+    </div>
+
+    <!-- Highlighted Topic / Starting Points at the Top -->
+    <div style="background-color: #f4efe5; border: 2px solid #17232d; border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; box-shadow: 4px 4px 0 #17232d;">
+      <span style="font-family: 'Courier New', Courier, monospace; font-size: 10px; font-weight: 900; color: #ed542d; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 8px;">
+        TOPIC / COMMON STARTING POINTS
+      </span>
+      <div style="font-size: 13px; font-weight: 800; color: #17232d; line-height: 1.6;">
+        ${
+          data.topic && data.topic !== "Not specified"
+            ? data.topic
+                .split(', ')
+                .map(
+                  (t) =>
+                    `<span style="display: inline-block; background-color: #fffdf8; color: #17232d; border: 1.5px solid #17232d; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 800; margin-right: 6px; margin-bottom: 6px; box-shadow: 2px 2px 0 #ed542d;">${t}</span>`
+                )
+                .join('')
+            : '<span style="color: #56616a; font-weight: 600;">None selected (General Enquiry)</span>'
+        }
+      </div>
     </div>
 
     <table role="presentation" width="100%" cellspacing="0" cellpadding="8" style="font-size: 14px; border-collapse: collapse;">
@@ -177,10 +209,6 @@ export function getContactTeamEmail(data: ContactFormData): { subject: string; h
       <tr style="border-bottom: 1px solid #e0e0e0;">
         <td style="font-weight: 800; color: #56616a;">Organisation:</td>
         <td style="font-weight: 700;">${data.org || "Not provided"}</td>
-      </tr>
-      <tr style="border-bottom: 1px solid #e0e0e0;">
-        <td style="font-weight: 800; color: #56616a;">Selected Topic:</td>
-        <td style="font-weight: 900; color: #17232d;">${data.topic || "General"}</td>
       </tr>
     </table>
 
@@ -201,10 +229,10 @@ export function getContactTeamEmail(data: ContactFormData): { subject: string; h
   const text = `
 New Contact Form Inquiry
 
+Topic / Starting Points: ${data.topic || "None selected"}
 - Name: ${data.name}
 - Email: ${data.email}
 - Organisation: ${data.org || "Not provided"}
-- Topic: ${data.topic || "General"}
 
 Message:
 ${data.message || "No message body provided."}
