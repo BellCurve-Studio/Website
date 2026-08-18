@@ -11,34 +11,46 @@ interface ServicesProps {
 export default function Services({ onOpenAudit, onSelectServiceTier }: ServicesProps) {
   const tiers = [
     {
-      name: "Free Audit & Diagnosis",
-      badge: "Step 01 • No Obligation",
+      name: "Free Basic Audit",
+      badge: "START HERE",
       isFree: true,
-      price: "Free",
-      included: "Website, enquiry flow, tech stack, and internal operational workflow diagnosis",
+      included: "A quick look at where things are getting stuck.",
+      subheading: "WHAT YOU GET",
       deliverables: [
-        "Full digital presence & UX review",
-        "Enquiry flow & conversion assessment",
-        "Written diagnostic report (3-5 days)",
-        "Zero obligation or pitch pressure",
+        "Website & digital presence check",
+        "Basic workflow review",
+        "Key issues to address",
       ],
       accent: "#ffbd5f",
-      cta: "Request Free Audit",
+      cta: "REQUEST FREE AUDIT →",
     },
     {
-      name: "Custom System Engagement",
-      badge: "Step 02 • Fixed Scope",
+      name: "Strategy & Consulting",
+      badge: "GO DEEPER",
       isFree: false,
-      price: "From ₹50,000",
-      included: "Tailored web applications, lead capture CRM, workflow automation & managed support",
+      included: "For problems that need more than a quick audit.",
+      subheading: "WHAT WE DO",
       deliverables: [
-        "Custom editorial web app & lead capture",
-        "CRM pipeline & automated notifications",
-        "Internal team operating tools & dashboards",
-        "Managed hosting, security & 60-day support",
+        "Diagnose the problem",
+        "Design the right solution",
+        "Define scope & next steps",
       ],
       accent: "#ed542d",
-      cta: "Select Engagement",
+      cta: "TALK TO US →",
+    },
+    {
+      name: "Build & Scale",
+      badge: "BUILD IT",
+      isFree: false,
+      included: "When the solution needs to become a working system.",
+      subheading: "WHAT WE BUILD",
+      deliverables: [
+        "Digital experiences",
+        "Business systems",
+        "Automation & AI",
+      ],
+      accent: "#cbe9da",
+      cta: "BUILD WITH US →",
     },
   ];
 
@@ -49,23 +61,23 @@ export default function Services({ onOpenAudit, onSelectServiceTier }: ServicesP
     >
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 w-full my-auto space-y-8">
         <header className="grid gap-6 lg:grid-cols-[1.2fr_.8fr] lg:items-end scroll-reveal">
-          <div>
+          <div >
             <span className="inline-flex items-center gap-2 rounded-full border-2 border-[#17232d] bg-[#fffdf8] px-4 py-1.5 font-code-mono text-[10px] font-black uppercase tracking-[.18em] text-[#17232d] shadow-[2.5px_2.5px_0_#17232d]">
-              <Layers className="h-3.5 w-3.5 text-[#ed542d]" aria-hidden="true" /> Service Tiers &amp; Pricing
+              <Layers className="h-3.5 w-3.5 text-[#ed542d]" aria-hidden="true" /> HOW YOU CAN WORK WITH US
             </span>
             <h2 className="mt-3 text-3xl font-black leading-[.96] tracking-[-.07em] text-[#17232d] sm:text-4xl lg:text-5xl">
-              Start with a free audit. <em className="font-editorial-serif font-normal text-[#ed542d] underline decoration-[#ffbd5f] decoration-wavy decoration-2">Build what you need.</em>
+              Start with the problem. <em className="font-editorial-serif font-normal text-[#ed542d] underline decoration-[#ffbd5f] decoration-wavy decoration-2">Build what you need.</em>
             </h2>
           </div>
           <div className="border-l-2 border-[#ed542d] pl-4">
             <p className="text-xs sm:text-sm leading-relaxed font-medium text-[#40505a]">
-              Every engagement begins with a free diagnosis. From there, you decide how to move forward.
+              Not sure what you need? Start with a free basic audit. If the problem needs deeper work, we can help you figure it out, design the right solution, and build it.
             </p>
           </div>
         </header>
 
         {/* 2 Core Tier Cards Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
+        <div className="grid gap-6 md:grid-cols-3 lg:gap-8">
           {tiers.map((tier, idx) => (
             <div
               key={tier.name}
@@ -94,11 +106,6 @@ export default function Services({ onOpenAudit, onSelectServiceTier }: ServicesP
 
                 <h3 className="mt-5 text-2xl font-black tracking-tight">{tier.name}</h3>
 
-                <div className="mt-3 flex items-baseline gap-1 border-b-2 border-[#17232d]/15 pb-4">
-                  <span className={`text-3xl sm:text-4xl font-black tracking-tight ${tier.isFree ? "text-[#ffbd5f]" : "text-[#17232d]"}`}>
-                    {tier.price}
-                  </span>
-                </div>
 
                 <p className="mt-4 text-xs sm:text-sm font-semibold leading-relaxed opacity-90">
                   {tier.included}
@@ -106,7 +113,7 @@ export default function Services({ onOpenAudit, onSelectServiceTier }: ServicesP
 
                 <div className="mt-5 pt-3 border-t border-[#17232d]/15">
                   <span className="font-code-mono text-[10px] font-black uppercase tracking-wider text-[#ed542d] block mb-2">
-                    Key Deliverables:
+                    {tier.subheading}
                   </span>
                   <ul className="space-y-2">
                     {tier.deliverables.map((item) => (
@@ -146,7 +153,7 @@ export default function Services({ onOpenAudit, onSelectServiceTier }: ServicesP
         <div className="scroll-reveal flex items-center justify-between rounded-2xl border-2 border-[#17232d]/20 bg-[#fffdf8] px-6 py-3.5 text-xs font-medium text-[#56616a]">
           <p className="flex items-center gap-2.5">
             <Sparkles className="h-4 w-4 text-[#ed542d] shrink-0" />
-            <span><strong>Note on Pricing:</strong> Figures represent starting-from ranges. Every project begins with a free audit before any proposal.</span>
+            <span>Not every problem needs a custom build. We recommend the simplest solution that solves it.</span>
           </p>
         </div>
       </div>

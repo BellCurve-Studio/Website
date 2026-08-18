@@ -22,7 +22,12 @@ export default function Home() {
   useScrollReveal();
 
   const handleNavigateToAudit = () => {
-    router.push("/audit");
+    const contactElem = document.getElementById("contact");
+    if (contactElem) {
+      contactElem.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/#contact");
+    }
   };
 
   const handleSeeHowWeWork = () => {
@@ -33,7 +38,12 @@ export default function Home() {
   };
 
   const handleSelectServiceTier = (_tierName: string) => {
-    router.push("/audit");
+    const contactElem = document.getElementById("contact");
+    if (contactElem) {
+      contactElem.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/#contact");
+    }
   };
 
   return (
